@@ -1,10 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>org.opencypher</groupId>
   <artifactId>morpheus-examples</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>${project.artifactId}</name>
+
+  <name>Morpheus Examples</name>
+
+  <description>Example project for working with graphs in Morpheus for Apache Spark</description>
 
   <repositories>
     <repository>
@@ -28,9 +32,10 @@
     <scala.binary.version>2.11</scala.binary.version>
     <scala.version>2.11.12</scala.version>
 
-    <dep.caps.version>1.0.0-beta6</dep.caps.version>
+    <dep.morpheus.version>1.0.0-beta2</dep.morpheus.version>
     <dep.hadoop.version>2.7.0</dep.hadoop.version>
     <dep.scalatest.version>3.0.5</dep.scalatest.version>
+    <dep.spark.version>2.2.1</dep.spark.version>
 
     <dep.junit.version>5.0.2</dep.junit.version>
     <dep.junit.platform.version>1.0.2</dep.junit.platform.version>
@@ -51,9 +56,15 @@
     </dependency>
 
     <dependency>
-      <groupId>org.opencypher</groupId>
-      <artifactId>spark-cypher</artifactId>
-      <version>${dep.caps.version}</version>
+      <groupId>org.neo4j</groupId>
+      <artifactId>morpheus-bundle</artifactId>
+      <version>${dep.morpheus.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-hive_2.11</artifactId>
+      <version>${dep.spark.version}</version>
     </dependency>
 
     <!--Test-->
@@ -61,29 +72,6 @@
       <groupId>org.scalatest</groupId>
       <artifactId>scalatest_${scala.binary.version}</artifactId>
       <version>${dep.scalatest.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.opencypher</groupId>
-      <artifactId>okapi-testing</artifactId>
-      <version>${dep.caps.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.opencypher</groupId>
-      <artifactId>spark-cypher</artifactId>
-      <version>${dep.caps.version}</version>
-      <type>test-jar</type>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.opencypher</groupId>
-      <artifactId>okapi-ir</artifactId>
-      <version>${dep.caps.version}</version>
-      <type>test-jar</type>
       <scope>test</scope>
     </dependency>
 
