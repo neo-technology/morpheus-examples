@@ -64,7 +64,7 @@
 
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-hive_2.11</artifactId>
+      <artifactId>spark-hive_${scala.binary.version}</artifactId>
       <version>${dep.spark.version}</version>
     </dependency>
 
@@ -86,13 +86,6 @@
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-runner</artifactId>
       <version>${dep.junit.platform.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.hadoop</groupId>
-      <artifactId>hadoop-minicluster</artifactId>
-      <version>${dep.hadoop.version}</version>
       <scope>test</scope>
     </dependency>
 
