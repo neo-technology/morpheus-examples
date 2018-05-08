@@ -1,0 +1,29 @@
+{
+  "idField" : {
+    "name" : "id",
+    "column" : 3,
+    "valueType" : "LONG",
+    "nullable" : false
+  },
+  "startIdField" : {
+    "name" : "startId",
+    "column" : 0,
+    "valueType" : "LONG",
+    "nullable" : false
+  },
+  "endIdField" : {
+    "name" : "endId",
+    "column" : 1,
+    "valueType" : "LONG",
+    "nullable" : false
+  },
+  "relationshipType" : "KNOWS",
+  "propertyFields" : [
+    {
+      "name" : "since",
+      "column" : 2,
+      "valueType" : "STRING",
+      "nullable" : false
+    }
+  ]
+}

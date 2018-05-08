@@ -1,0 +1,27 @@
+{
+  "idField" : {
+    "name" : "id",
+    "column" : 0,
+    "valueType" : "LONG",
+    "nullable" : false
+  },
+  "implicitLabels" : [
+    "Person"
+  ],
+  "optionalLabels" : [
+  ],
+  "propertyFields" : [
+    {
+      "name" : "age",
+      "column" : 1,
+      "valueType" : "INTEGER",
+      "nullable" : false
+    },
+    {
+      "name" : "name",
+      "column" : 2,
+      "valueType" : "STRING",
+      "nullable" : false
+    }
+  ]
+}
