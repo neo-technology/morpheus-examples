@@ -17,7 +17,7 @@ object Neo4jEnterpriseReadExample extends App {
   val neo4j = Neo4jHelpers.startNeo4j(personNetwork)
 
   // Register Graph Data Sources (GDS)
-  session.registerSource(Namespace("socialNetwork"), EnterpriseNeo4jGraphSource(new URI(neo4j.uri)))
+  session.registerSource(Namespace("socialNetwork"), EnterpriseNeo4jGraphSource(neo4j.uri))
 
   // Access the graph via its qualified graph name
   val socialNetwork = session.catalog.graph("socialNetwork.graph")

@@ -1,5 +1,7 @@
 package org.neo4j.morpheus.utils
 
+import java.net.URI
+
 import org.neo4j.graphdb.Result
 import org.neo4j.harness.{ServerControls, TestServerBuilders}
 import org.opencypher.spark.api.io.neo4j.Neo4jConfig
@@ -11,11 +13,11 @@ object Neo4jHelpers {
     def dataSourceConfig =
       Neo4jConfig(server.boltURI(), user = "anonymous", password = Some("password"), encrypted = false)
 
-    def uri: String = {
+    def uri: URI = {
       val scheme = server.boltURI().getScheme
       val userInfo = s"anonymous:password@"
       val host = server.boltURI().getAuthority
-      s"$scheme://$userInfo$host"
+      new URI(s"$scheme://$userInfo$host")
     }
 
     def execute(cypher: String): Result =
