@@ -70,6 +70,17 @@ object Neo4jAndParquetExample extends App {
   // Show the results
   res.show
 
+  //  +--------------------------+
+  //  | person | product         |
+  //  +--------------------------+
+  //  | 'Bob'  | '1984'          |
+  //  | 'Bob'  | 'Jurassic Park' |
+  //  | 'Bob'  | 'Terminator 2'  |
+  //  | 'Bob'  | 'Shakira'       |
+  //  +--------------------------+
+  //  (4 rows)
+
+
   // Shutdown Neo4j test instance
   neo4j.close()
 
