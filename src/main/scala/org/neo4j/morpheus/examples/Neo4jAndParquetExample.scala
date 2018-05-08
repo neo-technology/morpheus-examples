@@ -55,7 +55,6 @@ object Neo4jAndParquetExample extends App {
        |        (friend)-[:IS]->(customer:Customer),
        |        (customer)-[:BOUGHT]->(product:Product)
        |  CONSTRUCT
-       |    ON session.linkGraph
        |    NEW (person)-[:SHOULD_BUY]->(product)
        |  RETURN GRAPH
        |}""".stripMargin)
