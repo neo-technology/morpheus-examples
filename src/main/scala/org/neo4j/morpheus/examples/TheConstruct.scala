@@ -5,6 +5,13 @@ import org.neo4j.hdfs.parquet.HdfsParquetGraphSource
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
 
+/**
+  * "This is the Construct. It's our loading program.
+  * We can load anything... From clothing to equipment,
+  * weapons, training simulations; anything we need."
+  *
+  * -- Morpheus, on the Construct
+  */
 object TheConstruct extends App {
 
   implicit val session: CAPSSession = CAPSSession.local()
