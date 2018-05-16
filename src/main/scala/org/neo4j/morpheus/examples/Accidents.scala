@@ -97,7 +97,7 @@ object Accidents extends App {
       RefactorPair(accidentTable, NestedNode(pk, "DayOfWeek", "Day_Of_Week", "OCCURRED")),
       RefactorPair(accidentTable, NestedNode(pk, "RoadSurfaceCondition", "Road_Surface_Conditions", "CONDITION")),
 
-      // RefactorPair(roads, NestedNode(pk, "Road", "Road_Number", "LOCATION", extraRoadNodeProps:_*))
+      RefactorPair(roads, NestedNode(pk, "Road", "Road_Number", "LOCATION", extraRoadNodeProps:_*)),
 
       RefactorPair(accidentTable, NestedNode(pk, "PedCrossingFacility", "Pedestrian_Crossing-Physical_Facilities", "FACILITY")),
       RefactorPair(accidentTable, NestedNode(pk, "PedCrossingHumanControl", "Pedestrian_Crossing-Human_Control", "CONTROL")),
