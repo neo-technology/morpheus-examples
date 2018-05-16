@@ -1,50 +1,41 @@
-package org.neo4j.morpheus.examples
+package org.neo4j.morpheus.examples.accidents
 
-import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.DataFrame
-import org.opencypher.okapi.api.io.conversion.{NodeMapping, RelationshipMapping}
-import org.opencypher.spark.api.CAPSSession
-import org.opencypher.spark.api.io.{CAPSEntityTable, CAPSNodeTable, CAPSRelationshipTable}
-import org.neo4j.morpheus.refactor.NestedNode
-import org.neo4j.morpheus.refactor.Refactor
-import org.neo4j.cypher.spark.udfs.CapUdfs.caps_monotonically_increasing_id
-import org.apache.log4j.Logger
-import org.apache.log4j.Level
-import java.util.UUID
-
+import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions.lit
-import org.neo4j.morpheus.refactor
+import org.neo4j.morpheus.refactor.{NestedNode, Refactor}
+import org.opencypher.okapi.api.graph.PropertyGraph
+import org.opencypher.spark.api.io.{CAPSEntityTable, CAPSNodeTable, CAPSRelationshipTable}
+import org.opencypher.okapi.api.io.conversion.NodeMapping
+import org.opencypher.spark.api.CAPSSession
 
-/**
-  * Demonstrates basic usage of the CAPS API by loading an example network from existing [[DataFrame]]s and
-  * running a Cypher query on it.
-  */
-object Accidents extends App {
-  override def main(args: Array[String]) {
-    println("My args were " + args.mkString(", "))
-    val csvFile = args(0)
+import scala.reflect.io.File
 
-    Logger.getLogger("org").setLevel(Level.WARN)
+class Accidents(csvDir:String)(implicit spark:SparkSession, session: CAPSSession) extends Graphable {
+  val pk = "__id"
 
-    val spark = SparkSession
-      .builder()
-      .master("local[*]")
-      .appName(s"caps-local-${UUID.randomUUID()}")
-      .getOrCreate()
+  val fields = Seq(
+    "Accident_Index", "Vehicle_Reference",
+    "Casualty_Reference", "Casualty_Class", "Sex_of_Casualty",
+    "Age_of_Casualty", "Age_Band_of_Casualty",
+    "Casualty_Severity", "Pedestrian_Location",
+    "Pedestrian_Movement", "Car_Passenger", "Bus_or_Coach_Passenger",
+    "Pedestrian_Road_Maintenance_Worker",
+    "Casualty_Type", "Casualty_Home_Area_Type", "Casualty_IMD_Decile")
 
-    // 1) Create CAPS session and retrieve Spark session
-    implicit val session: CAPSSession = CAPSSession.create(spark)
-    // val spark = session.sparkSession
+  val df = spark.read
+    .format("csv")
+    .option("header", "true") //reading the headers
+    .option("mode", "DROPMALFORMED")
+    .load(csvDir + File.separator + "Cas.csv")
+    .select(fields.head, fields.tail:_*)
+    .withColumn(reservedId, curId)
 
-    val curId = caps_monotonically_increasing_id(0)
-
-    val pk = "__id"
-
+  def asGraph(label:String = "Accident") : PropertyGraph = {
     val raw = spark.read
       .format("csv")
       .option("header", "true") //reading the headers
       .option("mode", "DROPMALFORMED")
-      .load(csvFile)
+      .load(csvDir + File.separator + "dftRoadSafety_Accidents_2016.csv")
 
     val df = raw
       .withColumn(pk, curId)
@@ -60,7 +51,7 @@ object Accidents extends App {
 
     val accident = CAPSNodeTable(
       NodeMapping.withSourceIdKey("__id")
-        .withImpliedLabel("Accident")
+        .withImpliedLabel(label)
         .withPropertyKeys("Location_Easting_OSGR", "Location_Northing_OSGR",
           "Longitude", "Latitude", "Police_Force", "Number_Of_Vehicles", "Number_Of_Casualties",
           "Date", "Time", "Urban_or_Rural_Area", "Did_Police_Officer_Attend_Scene_of_Accident",
@@ -93,7 +84,7 @@ object Accidents extends App {
       RefactorPair(accidentTable, NestedNode(pk, "Severity", "Accident_Severity", "SEVERITY")),
       RefactorPair(accidentTable, NestedNode(pk, "LightCondition", "Light_Conditions", "CONDITION")),
       RefactorPair(accidentTable, NestedNode(pk, "WeatherCondition", "Weather_Conditions", "CONDITION")),
-      RefactorPair(accidentTable, NestedNode(pk, "Year", "Year", "OCCURRED")),
+      RefactorPair(accidentTable, NestedNode(pk, "Date", "Date", "OCCURRED")),
       RefactorPair(accidentTable, NestedNode(pk, "DayOfWeek", "Day_Of_Week", "OCCURRED")),
       RefactorPair(accidentTable, NestedNode(pk, "RoadSurfaceCondition", "Road_Surface_Conditions", "CONDITION")),
 
@@ -114,30 +105,6 @@ object Accidents extends App {
     val entityTables: Seq[CAPSEntityTable] = ns ++ es
 
     println("Assembling graph")
-    val graph = session.readFrom(accident, entityTables:_*)
-
-    println(graph.schema.pretty)
-
-    println("What's the average severity for each day?")
-    graph.cypher(
-      """
-        |MATCH (a:Accident)-[r:SEVERITY]->(s:Severity),
-        |(a)-[:OCCURRED]->(d:DayOfWeek)
-        |RETURN distinct(d.Day_Of_Week) as DayOfWeek,
-        |  avg(toFloat(s.Accident_Severity)) AS avgSeverity
-        |ORDER BY DayOfWeek ASC
-      """.stripMargin
-    ).getRecords.show
-
-    println("Where are these happening")
-    graph.cypher(
-      """
-        |MATCH (a:Accident)-[:LOCATION]->(r:Road)
-        |WHERE r.Road_Number IS NOT NULL
-        |RETURN distinct(r.Road_Number), r.Road_Type, r.Road_Class, count(a) as x
-        |ORDER BY x desc
-        |LIMIT 20
-      """.stripMargin
-    ).getRecords.show
+    session.readFrom(accident, entityTables:_*)
   }
 }
