@@ -26,9 +26,9 @@ class Casualties(csvDir:String)(implicit spark:SparkSession, session: CAPSSessio
     .select(fields.head, fields.tail:_*)
     .withColumn(reservedId, curId)
 
-  def asGraph(label:String = "Vehicle") : PropertyGraph = {
+  def asGraph(label:String = "Casualty") : PropertyGraph = {
     val mapping = NodeMapping.withSourceIdKey(reservedId)
-      .withImpliedLabel("Vehicle")
+      .withImpliedLabel(label)
       .withPropertyKeys(fields:_*)
 
     session.readFrom(CAPSNodeTable(mapping, df))

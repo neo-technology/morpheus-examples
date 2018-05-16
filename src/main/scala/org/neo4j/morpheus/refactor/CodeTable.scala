@@ -8,14 +8,14 @@ import org.opencypher.spark.api.CAPSSession
 import org.opencypher.spark.api.io.CAPSNodeTable
 
 class CodeTable(csvFile: String, codeField:String, descriptionField: String)(implicit spark:SparkSession, session: CAPSSession) extends Graphable {
-  val df = spark.read
+  val df = capsWorkaround(spark.read
     .format("csv")
     .option("header", "true") //reading the headers
     .option("mode", "DROPMALFORMED")
     .load(csvFile)
     // Get rid of anything else in there except the mapping lookup
     .select(codeField, descriptionField)
-    .withColumn(reservedId, curId)
+    .withColumn(reservedId, curId))
 
   val defaultProps = Seq(codeField, descriptionField)
 

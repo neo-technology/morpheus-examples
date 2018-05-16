@@ -14,33 +14,21 @@ class Accidents(csvDir:String)(implicit spark:SparkSession, session: CAPSSession
   val pk = "__id"
 
   val fields = Seq(
-    "Accident_Index", "Vehicle_Reference",
-    "Casualty_Reference", "Casualty_Class", "Sex_of_Casualty",
-    "Age_of_Casualty", "Age_Band_of_Casualty",
-    "Casualty_Severity", "Pedestrian_Location",
-    "Pedestrian_Movement", "Car_Passenger", "Bus_or_Coach_Passenger",
-    "Pedestrian_Road_Maintenance_Worker",
-    "Casualty_Type", "Casualty_Home_Area_Type", "Casualty_IMD_Decile")
+    "Location_Easting_OSGR", "Location_Northing_OSGR",
+    "Longitude", "Latitude", "Police_Force", "Number_Of_Vehicles", "Number_of_Casualties",
+    "Date", "Time", "Urban_or_Rural_Area", "Did_Police_Officer_Attend_Scene_of_Accident",
+    "LSOA_of_Accident_Location", "Accident_Index")
 
-  val df = spark.read
+  val raw = spark.read
     .format("csv")
     .option("header", "true") //reading the headers
     .option("mode", "DROPMALFORMED")
-    .load(csvDir + File.separator + "Cas.csv")
-    .select(fields.head, fields.tail:_*)
-    .withColumn(reservedId, curId)
+    .load(csvDir + File.separator + "dftRoadSafety_Accidents_2016.csv")
+
+  val df = raw
+    .withColumn(pk, curId)
 
   def asGraph(label:String = "Accident") : PropertyGraph = {
-    val raw = spark.read
-      .format("csv")
-      .option("header", "true") //reading the headers
-      .option("mode", "DROPMALFORMED")
-      .load(csvDir + File.separator + "dftRoadSafety_Accidents_2016.csv")
-
-    val df = raw
-      .withColumn(pk, curId)
-
-    println("Beginning raw input data, tagged with IDs")
     df.show(5)
 
     // STEP 1 -- pull out just Accident nodes.
@@ -52,16 +40,8 @@ class Accidents(csvDir:String)(implicit spark:SparkSession, session: CAPSSession
     val accident = CAPSNodeTable(
       NodeMapping.withSourceIdKey("__id")
         .withImpliedLabel(label)
-        .withPropertyKeys("Location_Easting_OSGR", "Location_Northing_OSGR",
-          "Longitude", "Latitude", "Police_Force", "Number_Of_Vehicles", "Number_Of_Casualties",
-          "Date", "Time", "Urban_or_Rural_Area", "Did_Police_Officer_Attend_Scene_of_Accident",
-          "LSOA_of_Accident_Location", "Accident_Index"),
-      accidentTable.select("__id",
-        "Location_Easting_OSGR", "Location_Northing_OSGR",
-        "Longitude", "Latitude", "Police_Force", "Number_Of_Vehicles", "Number_Of_Casualties",
-        "Date", "Time", "Urban_or_Rural_Area", "Did_Police_Officer_Attend_Scene_of_Accident",
-        "LSOA_of_Accident_Location", "Accident_Index"
-      ))
+        .withPropertyKeys(fields:_*),
+      accidentTable.select("__id", fields:_*))
 
     // Road designation is a more complex structure in here we need to pre-process before
     // factoring out.
