@@ -52,33 +52,6 @@ object Accidents extends App {
     println("Beginning raw input data, tagged with IDs")
     df.show(5)
 
-
-    /*
-
-        val graphParts = Map[String, GraphPart](
-          //        "road" -> spark.sql("""
-          //            |SELECT distinct(roadDesignation), roadNumber, roadClass FROM (
-          //            |   SELECT concat(`1st_Road_Number`, ' ', `1st_Road_Class`) as roadDesignation,
-          //            |   `1st_Road_Number` as roadNumber,
-          //            |   `1st_Road_Class` as roadClass
-          //            |   FROM accidents
-          //            |   GROUP BY roadDesignation, roadNumber, roadClass
-          //            |
-          //            |   UNION ALL
-          //            |
-          //            |   SELECT concat(`2nd_Road_Number`, ' ', `2nd_Road_Class`) as roadDesignation,
-          //            |   `2nd_Road_Number` as roadNumber,
-          //            |   `2nd_Road_Class` as roadClass
-          //            |   FROM accidents
-          //            |)
-          //            |GROUP BY roadDesignation, roadNumber, roadClass
-          //            |ORDER BY roadNumber DESC
-          //            """.stripMargin).withColumn("id", curId),
-          //        "accident" -> accident
-        )
-    */
-
-
     // STEP 1 -- pull out just Accident nodes.
     // Workaround 1: Get 'id' column in first position
     val sortedCols = df.columns.sortWith((l, r) => l == "__id" )
