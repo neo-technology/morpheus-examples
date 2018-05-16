@@ -37,6 +37,7 @@ object Refactor {
       .withColumnRenamed(reservedIdField, "to")
       .withColumn(reservedIdField, curId)
       .drop(node.nestedKey + "_tmp", node.nestedKey)
+      .select(reservedIdField, "from", "to")
       .capsWorkaround()
 
     // println("NODES AND SCHEMA")
