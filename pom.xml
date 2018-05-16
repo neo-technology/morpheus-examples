@@ -38,6 +38,8 @@
     <dep.scalatest.version>3.0.5</dep.scalatest.version>
     <dep.spark.version>2.2.1</dep.spark.version>
 
+    <dep.h2.version>1.4.196</dep.h2.version>
+
     <dep.junit.version>5.0.2</dep.junit.version>
     <dep.junit.platform.version>1.0.2</dep.junit.platform.version>
   </properties>
@@ -60,6 +62,12 @@
       <groupId>org.neo4j</groupId>
       <artifactId>morpheus-bundle</artifactId>
       <version>${dep.morpheus.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>${dep.h2.version}</version>
     </dependency>
 
     <dependency>
