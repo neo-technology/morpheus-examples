@@ -1,0 +1,10 @@
+[
+  {
+    "storageFormat": "jdbc",
+    "dataSourceName": "NORTHWIND",
+    "jdbcUri": "jdbc:h2:mem:NORTHWIND.db;DB_CLOSE_DELAY=30;",
+    "jdbcDriver":"org.h2.Driver",
+    "isDefaultEnvironment": true,
+    "jdbcFetchSize": 100
+  }
+]

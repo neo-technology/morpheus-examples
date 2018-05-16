@@ -40,6 +40,7 @@
 
     <dep.junit.version>5.0.2</dep.junit.version>
     <dep.junit.platform.version>1.0.2</dep.junit.platform.version>
+    <dep.h2.version>1.4.196</dep.h2.version>
   </properties>
 
   <dependencies>
@@ -72,6 +73,12 @@
       <groupId>org.neo4j.test</groupId>
       <artifactId>neo4j-harness</artifactId>
       <version>${dep.neo4j.harness.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>${dep.h2.version}</version>
     </dependency>
 
     <!--Test-->
