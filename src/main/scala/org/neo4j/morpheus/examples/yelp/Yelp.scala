@@ -4,10 +4,14 @@ import java.util.UUID
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.{DataFrame, SQLContext, SparkSession}
+import org.neo4j.cypher.spark.EnterpriseNeo4jGraphSource
 import org.neo4j.morpheus.examples.accidents.Graphable
 import org.opencypher.okapi.api.io.conversion.NodeMapping
 import org.opencypher.spark.api.CAPSSession
 import org.opencypher.spark.api.io.CAPSNodeTable
+import java.net.URI
+
+import org.opencypher.okapi.api.graph.GraphName
 
 /*
  * To use this example you must download the Yelp dataset challenge (JSON format)
@@ -21,13 +25,14 @@ import org.opencypher.spark.api.io.CAPSNodeTable
  * It is roughly 6gb uncompressed.
  */
 class YelpData(jsonFile:String, attrs:Seq[String])(implicit spark:SparkSession, session:CAPSSession) extends Graphable {
-  println("Top 5 of " + jsonFile)
   val dfTmp = capsWorkaround(spark.read.json(jsonFile)
       .withColumn(reservedId, curId))
       .select(reservedId, attrs:_*)
 
   // properties like.this mess up CAPS, so rename them
   val df = dfTmp.toDF(dfTmp.columns.map(_.replaceAll("\\.", "_")): _*)
+
+  // println("Top 5 of " + jsonFile)
   // df.show(5)
 
   def asGraph(label: String) = {
@@ -95,6 +100,15 @@ object Yelp extends App {
         |
         |RETURN GRAPH
       """.stripMargin).getGraph)
+
+
+      /*
+       * This code fails due to a bug in string escaping.
+       * Carded here: https://trello.com/c/EXDq6dKY/230-enterpriseneo4jpropertygraphsource-does-not-properly-escape-strings-when-writing-to-neo4j-via-driver
+      val neo4j = EnterpriseNeo4jGraphSource(new URI("bolt://neo4j:admin@localhost"))
+      println("Storing yelp graph")
+      neo4j.store(GraphName("yelp"), session.catalog.graph("yelp"))
+      */
 
       // Show some really mean reviews.  :)  Namely very negative
       // reviews of businesses that are overall favorable.
