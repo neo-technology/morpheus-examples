@@ -57,9 +57,9 @@ object HiveSqlGraphSourceExample extends App {
       // -----------------------------------------------------------------------------------------------------------
       ("javax.jdo.option.ConnectionURL", "jdbc:derby:memory:hms;create=true"),
       ("javax.jdo.option.ConnectionDriverName", "org.apache.derby.jdbc.EmbeddedDriver"),
-      // --------------------------------------------------------------------------
-      // All alernative way of enabling Spark Hive Support (e.g.  enableHiveSupport
-      // --------------------------------------------------------------------------
+      // ------------------------------------------------------------------------------------------------------------
+      // An alternative way of enabling Spark Hive Support (e.g. you could use enableHiveSupport on the SparkSession)
+      // ------------------------------------------------------------------------------------------------------------
       ("hive.metastore.warehouse.dir", s"warehouse_${System.currentTimeMillis}"),
       (CATALOG_IMPLEMENTATION.key, "hive") // Enable hive
     )
