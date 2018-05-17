@@ -12,7 +12,6 @@ import org.opencypher.spark.api.CAPSSession
 
 object HiveSqlGraphSourceExample extends App {
   // Create CAPS session
-  val sparkWarehouseDir = new File(s"spark-warehouse_${System.currentTimeMillis}").getAbsolutePath
   val settings = hiveExampleSettings
   implicit val session: CAPSSession = CAPSSession.local(settings: _*)
 
@@ -43,20 +42,24 @@ object HiveSqlGraphSourceExample extends App {
     .getRecords
     .show
 
-  // Helper for this example
+  // Set up temporary spark and hive directories for this example
   private def hiveExampleSettings: Seq[(String, String)] = {
+    val sparkWarehouseDir = new File(s"spark-warehouse_${System.currentTimeMillis}").getAbsolutePath
     Seq(
-      // ---------------------------------------------------------------
-      // Create a new unique local new spark warehouse dir for every run
-      // ---------------------------------------------------------------
+      // ------------------------------------------------------------------------
+      // Create a new unique local spark warehouse dir for every run - idempotent
+      // ------------------------------------------------------------------------
       ("spark.sql.warehouse.dir", sparkWarehouseDir),
-      // ------------------------------------------------------------------------------------------------------
+      // -----------------------------------------------------------------------------------------------------------
       // Create an in-memory Hive Metastore (only Derby supported for this mode)
-      // This is to avoid database and table already exists errors for re-runs - not to be used for production.
-      // ------------------------------------------------------------------------------------------------------
+      // This is to avoid creating a local HIVE "metastore_db" on disk which needs to be cleaned up before each run,
+      // e.g. avoids database and table already exists exceptions on re-runs - not to be used for production.
+      // -----------------------------------------------------------------------------------------------------------
       ("javax.jdo.option.ConnectionURL", "jdbc:derby:memory:hms;create=true"),
       ("javax.jdo.option.ConnectionDriverName", "org.apache.derby.jdbc.EmbeddedDriver"),
+      // --------------------------------------------------------------------------
       // All alernative way of enabling Spark Hive Support (e.g.  enableHiveSupport
+      // --------------------------------------------------------------------------
       ("hive.metastore.warehouse.dir", s"warehouse_${System.currentTimeMillis}"),
       (CATALOG_IMPLEMENTATION.key, "hive") // Enable hive
     )
