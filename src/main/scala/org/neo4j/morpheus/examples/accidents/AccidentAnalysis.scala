@@ -15,10 +15,11 @@ import scala.reflect.io.File
   */
 object AccidentAnalysis extends App {
   override def main(args: Array[String]) {
-    if (!File(args(0)).isDirectory) {
-      println("Call me with a directory name that contains accident CSV files")
-      return None
-    }
+    println("Call me with a directory name that contains accident CSV files")
+
+    println("////////////////////////////////////////////////////")
+    println("AccidentAnalysis " +  args + "//" + args(0))
+    println("////////////////////////////////////////////////////")
 
     Logger.getLogger("org").setLevel(Level.WARN)
 
