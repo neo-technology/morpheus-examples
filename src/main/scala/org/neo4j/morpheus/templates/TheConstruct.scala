@@ -1,4 +1,4 @@
-package org.neo4j.morpheus.examples
+package org.neo4j.morpheus.templates
 
 import org.neo4j.morpheus.api.MorpheusGraphSource
 import org.opencypher.okapi.api.graph.Namespace
