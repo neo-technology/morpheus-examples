@@ -1,7 +1,6 @@
 package org.neo4j.morpheus.examples
 
-import org.apache.hadoop.fs.Path
-import org.neo4j.hdfs.orc.HdfsOrcGraphSource
+import org.neo4j.morpheus.api.MorpheusGraphSource
 import org.neo4j.morpheus.utils.SocialNetworkDataFrames
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
@@ -13,7 +12,7 @@ object OrcWriteExample extends App {
   implicit val session: CAPSSession = CAPSSession.local()
   val spark = session.sparkSession
   // // Register the Orc data source within the CAPS session and point it to the local filesystem, i.e. <project-dir>/target/classes/.
-  session.registerSource(Namespace("myOrc"), HdfsOrcGraphSource(new Path(getClass.getResource("/").getPath)))
+  session.registerSource(Namespace("myOrc"), MorpheusGraphSource.orc(getClass.getResource("/").getPath))
 
   // Generate some DataFrames that we'd like to interpret as a property graph.
   val nodesDF = SocialNetworkDataFrames.nodes(spark)

@@ -1,10 +1,7 @@
 package org.neo4j.morpheus.examples
 
-import java.net.URI
-
-import org.apache.hadoop.fs.Path
 import org.neo4j.cypher.spark.EnterpriseNeo4jGraphSource
-import org.neo4j.hdfs.parquet.HdfsParquetGraphSource
+import org.neo4j.morpheus.api.MorpheusGraphSource
 import org.neo4j.morpheus.utils.Neo4jHelpers
 import org.neo4j.morpheus.utils.Neo4jHelpers._
 import org.opencypher.okapi.api.graph.Namespace
@@ -25,7 +22,7 @@ object Neo4jAndParquetExample extends App {
   val socialNetwork = session.catalog.graph("neo4j.graph")
 
   // Register a File-based data source in the Cypher session
-  session.registerSource(Namespace("parquet"), HdfsParquetGraphSource(root = new Path(getClass.getResource("/parquet").getFile)))
+  session.registerSource(Namespace("parquet"), MorpheusGraphSource.parquet(getClass.getResource("/parquet").getFile))
 
   // Access the graph via its qualified graph name
   val purchaseNetwork = session.catalog.graph("parquet.products")

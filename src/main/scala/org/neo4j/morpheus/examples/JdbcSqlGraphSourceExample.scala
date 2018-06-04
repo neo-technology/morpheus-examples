@@ -3,7 +3,7 @@ package org.neo4j.morpheus.examples
 import java.nio.file.Paths
 
 import org.apache.spark.sql.SparkSession
-import org.neo4j.morpheus.converter.SqlDataExample
+import org.neo4j.morpheus.utils.CensusDB
 import org.neo4j.sql.SqlGraphSource
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
@@ -18,7 +18,7 @@ object JdbcSqlGraphSourceExample extends App {
   val schema = "CENSUS"
   val driver = "org.h2.Driver"
   val jdbcUrl = s"jdbc:h2:mem:$schema.db;INIT=CREATE SCHEMA IF NOT EXISTS $schema;DB_CLOSE_DELAY=30;"
-  SqlDataExample.createJdbcData(driver, jdbcUrl, schema)
+  CensusDB.createJdbcData(driver, jdbcUrl, schema)
 
   // Register a SQL source (for JDBC) in the Cypher session
   val graphName = "Census_1901"
