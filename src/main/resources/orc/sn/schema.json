@@ -1,0 +1,21 @@
+{
+  "labelPropertyMap" : {
+    "Person" : {
+      "name" : {
+        "CTString" : {
+          
+        }
+      },
+      "age" : {
+        "CTInteger" : {
+          
+        }
+      }
+    }
+  },
+  "relTypePropertyMap" : {
+    "KNOWS" : {
+      
+    }
+  }
+}
