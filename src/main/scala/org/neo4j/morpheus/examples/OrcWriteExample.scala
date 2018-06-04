@@ -1,12 +1,12 @@
 package org.neo4j.morpheus.examples
 
 import org.neo4j.morpheus.api.MorpheusGraphSource
-import org.neo4j.morpheus.utils.SocialNetworkDataFrames
+import org.neo4j.morpheus.utils.{ConsoleApp, SocialNetworkDataFrames}
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
 import org.opencypher.spark.api.io.{CAPSNodeTable, CAPSRelationshipTable}
 
-object OrcWriteExample extends App {
+object OrcWriteExample extends ConsoleApp {
 
   // Create CAPS session, retrieve Spark session and register a Parquet Graph Source
   implicit val session: CAPSSession = CAPSSession.local()
@@ -26,6 +26,8 @@ object OrcWriteExample extends App {
   // Create property graph from graph scans
   val graph = session.readFrom(personTable, friendsTable)
 
+  // Delete any graph existing under the selected name (from last run)
+  session.catalog.delete("myOrc.socialNetwork")
   // Store the graph using the Orc Graph Source (can be found in <project-dir>/target/classes/socialNetwork)
   session.catalog.store("myOrc.socialNetwork", graph)
 }

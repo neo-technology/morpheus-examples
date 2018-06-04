@@ -3,12 +3,12 @@ package org.neo4j.morpheus.examples
 import java.nio.file.Paths
 
 import org.apache.spark.sql.SparkSession
-import org.neo4j.morpheus.utils.CensusDB
+import org.neo4j.morpheus.utils.{CensusDB, ConsoleApp}
 import org.neo4j.sql.SqlGraphSource
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
 
-object JdbcSqlGraphSourceExample extends App {
+object JdbcSqlGraphSourceExample extends ConsoleApp {
 
   // Create CAPS session
   implicit val session: CAPSSession = CAPSSession.local()
