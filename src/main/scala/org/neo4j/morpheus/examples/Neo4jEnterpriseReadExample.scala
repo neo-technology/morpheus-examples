@@ -1,14 +1,12 @@
 package org.neo4j.morpheus.examples
 
-import java.net.URI
-
 import org.neo4j.cypher.spark.EnterpriseNeo4jGraphSource
 import org.neo4j.morpheus.utils.Neo4jHelpers._
-import org.neo4j.morpheus.utils.Neo4jHelpers
+import org.neo4j.morpheus.utils.{ConsoleApp, Neo4jHelpers}
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
 
-object Neo4jEnterpriseReadExample extends App {
+object Neo4jEnterpriseReadExample extends ConsoleApp {
 
   // Create CAPS session
   implicit val session: CAPSSession = CAPSSession.local()

@@ -2,12 +2,12 @@ package org.neo4j.morpheus.examples
 
 import java.nio.file.{Path, Paths}
 
-import org.neo4j.morpheus.utils.NorthwindDB
+import org.neo4j.morpheus.utils.{ConsoleApp, NorthwindDB}
 import org.neo4j.sql.SqlGraphSource
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
 
-object NorthwindSQLExampleJDBC extends App {
+object NorthwindSQLExampleJDBC extends ConsoleApp {
 
   // start up the SQL database
   NorthwindDB.init()

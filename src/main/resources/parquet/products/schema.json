@@ -1,0 +1,62 @@
+{
+  "labelPropertyMap" : {
+    "Product" : {
+      "rank" : {
+        "CTInteger" : {
+          
+        }
+      },
+      "category" : {
+        "CTString" : {
+          
+        }
+      },
+      "morpheusID" : {
+        "CTInteger" : {
+          
+        }
+      },
+      "title" : {
+        "CTString" : {
+          
+        }
+      }
+    },
+    "Customer" : {
+      "morpheusID" : {
+        "CTInteger" : {
+          
+        }
+      },
+      "name" : {
+        "CTString" : {
+          
+        }
+      }
+    }
+  },
+  "relTypePropertyMap" : {
+    "BOUGHT" : {
+      "rating" : {
+        "CTInteger" : {
+          
+        }
+      },
+      "capsID" : {
+        "CTInteger" : {
+          
+        }
+      },
+      "helpful" : {
+        "CTInteger" : {
+          
+        }
+      },
+      "votes" : {
+        "CTInteger" : {
+          
+        }
+      }
+    }
+  }
+}

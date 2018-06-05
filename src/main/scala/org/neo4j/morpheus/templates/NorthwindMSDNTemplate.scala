@@ -6,11 +6,11 @@ package org.neo4j.morpheus.templates
 import java.io.File
 import java.net.URI
 
-import org.apache.hadoop.fs.{FileSystem, Path}
+import org.apache.hadoop.fs.FileSystem
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 import org.neo4j.cypher.spark.EnterpriseNeo4jGraphSource
-import org.neo4j.hdfs.parquet.HdfsParquetGraphSource
+import org.neo4j.morpheus.api.MorpheusGraphSource
 import org.neo4j.sql.SqlGraphSource
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
@@ -47,7 +47,7 @@ object NorthwindMSDNTemplate extends App {
   // (:User { userId, [employeeId])-[:REPLY_TO]->(:Question { content })
   caps.registerSource(Namespace("msdn"), new EnterpriseNeo4jGraphSource(Neo4jConfig(URI.create(neo4jBoltURI))))
   // (:Event { type, userId, timestamp })
-  caps.registerSource(Namespace("msdn_logs"), new HdfsParquetGraphSource(new Path(hdfsRootFolder)))
+  caps.registerSource(Namespace("msdn_logs"), MorpheusGraphSource.parquet(hdfsRootFolder))
 
   // ========================================================
   // Data Integration
@@ -140,9 +140,7 @@ object NorthwindMSDNTemplate extends App {
       |LIMIT 10
     """.stripMargin)
 
-
   promotionCandidates.show
-
 
   // ========================================================
   // Utility functions

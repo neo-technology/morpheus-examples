@@ -6,12 +6,11 @@ package org.neo4j.morpheus.templates
 import java.io.File
 import java.net.URI
 
-import org.apache.hadoop.fs.{FileSystem, Path}
+import org.apache.hadoop.fs.FileSystem
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 import org.neo4j.cypher.spark.EnterpriseNeo4jGraphSource
-import org.neo4j.hdfs.parquet.HdfsParquetGraphSource
-import org.neo4j.sql.SqlGraphSource
+import org.neo4j.morpheus.api.MorpheusGraphSource
 import org.opencypher.okapi.api.graph.{Namespace, PropertyGraph, QualifiedGraphName}
 import org.opencypher.okapi.impl.io.SessionGraphDataSource
 import org.opencypher.spark.api.CAPSSession
@@ -62,8 +61,8 @@ object APIOverviewTemplate extends App {
     // can register multiple session data sources
     capsSession.registerSource(Namespace("working"), new SessionGraphDataSource())
     // mount data source at an arbitrary namespace
-    capsSession.registerSource(Namespace("datalake_europe"), new HdfsParquetGraphSource(new Path(hdfsURItoWkds)))
-    capsSession.registerSource(Namespace("sql"), SqlGraphSource(rootDirectoryPath, sqlDDLFilename, sqlSourceMappingsFilename))
+    capsSession.registerSource(Namespace("datalake_europe"), MorpheusGraphSource.parquet(hdfsURItoWkds))
+    capsSession.registerSource(Namespace("sql"), MorpheusGraphSource.sql(rootDirectoryPath, sqlDDLFilename, sqlSourceMappingsFilename))
     capsSession.registerSource(Namespace("neo4j"), new EnterpriseNeo4jGraphSource(Neo4jConfig(URI.create(boltURI))))
 
     // query across multiple graphs hosted in different environments
@@ -168,7 +167,6 @@ object APIOverviewTemplate extends App {
     // print results to console
     recommendations.show
   }
-
 
   private def parseArgs(strings: Array[String]): String = ???
 

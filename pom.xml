@@ -62,7 +62,7 @@
     <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>morpheus-bundle</artifactId>
-      <version>${dep.morpheus.version}</version>
+      <version>${project.version}</version>
     </dependency>
 
     <dependency>

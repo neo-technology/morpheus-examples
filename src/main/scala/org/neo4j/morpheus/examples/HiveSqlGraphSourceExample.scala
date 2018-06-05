@@ -5,12 +5,12 @@ import java.nio.file.Paths
 
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.internal.StaticSQLConf.CATALOG_IMPLEMENTATION
-import org.neo4j.morpheus.converter.SqlDataExample
+import org.neo4j.morpheus.utils.{CensusDB, ConsoleApp}
 import org.neo4j.sql.SqlGraphSource
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
 
-object HiveSqlGraphSourceExample extends App {
+object HiveSqlGraphSourceExample extends ConsoleApp {
   // Create CAPS session
   val settings = hiveExampleSettings
   implicit val session: CAPSSession = CAPSSession.local(settings: _*)
@@ -18,7 +18,7 @@ object HiveSqlGraphSourceExample extends App {
   // Create the data in H2 in-memory database
   implicit val sparkSession: SparkSession = session.sparkSession
   val schema = "CENSUS"
-  SqlDataExample.createHiveData(schema)
+  CensusDB.createHiveData(schema)
 
   // Register a SQL source (for Hive) in the Cypher session
   val graphName = "Census_1901"
