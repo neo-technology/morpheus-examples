@@ -7,8 +7,8 @@ class JdbcSqlGraphSourceExampleTest extends ExampleTest {
     validate(JdbcSqlGraphSourceExample.main(Array.empty),
       """|CENSUS.TOWN table for jdbc successfully
          |CENSUS.RESIDENTS table for jdbc successfully
-         |CENSUS.FOREIGNERS table for jdbc successfully
-         |CENSUS.DOGS table for jdbc successfully
+         |CENSUS.VISITORS table for jdbc successfully
+         |CENSUS.LICENSED_DOGS table for jdbc successfully
          |+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          || n                                                                                                                                                | r             | m                                                  |
          |+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

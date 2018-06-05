@@ -25,8 +25,8 @@ object CensusDB {
     val baseOptions = Map(URL -> jdbcUrl, DRIVER -> driver)
     populateData("TOWN", "/csv/census/town.csv", JdbcFormat, schema, baseOptions ++ Map(DB_TABLE -> s"$schema.TOWN"))
     populateData("RESIDENTS", "/csv/census/residents.csv", JdbcFormat, schema, baseOptions ++ Map(DB_TABLE -> s"$schema.RESIDENTS"))
-    populateData("FOREIGNERS", "/csv/census/foreigners.csv", JdbcFormat, schema, baseOptions ++ Map(DB_TABLE -> s"$schema.FOREIGNERS"))
-    populateData("DOGS", "/csv/census/dogs.csv", JdbcFormat, schema, baseOptions ++ Map(DB_TABLE -> s"$schema.DOGS"))
+    populateData("VISITORS", "/csv/census/visitors.csv", JdbcFormat, schema, baseOptions ++ Map(DB_TABLE -> s"$schema.VISITORS"))
+    populateData("LICENSED_DOGS", "/csv/census/licensed_dogs.csv", JdbcFormat, schema, baseOptions ++ Map(DB_TABLE -> s"$schema.LICENSED_DOGS"))
 
     // create the views
     executeDDL(Seq(
@@ -49,8 +49,8 @@ object CensusDB {
 
     populateData("TOWN", "/csv/census/town.csv", ParquetFormat, schema, Map.empty)
     populateData("RESIDENTS", "/csv/census/residents.csv", ParquetFormat, schema, Map.empty)
-    populateData("FOREIGNERS", "/csv/census/foreigners.csv", ParquetFormat, schema, Map.empty)
-    populateData("DOGS", "/csv/census/dogs.csv", ParquetFormat, schema, Map.empty)
+    populateData("VISITORS", "/csv/census/visitors.csv", ParquetFormat, schema, Map.empty)
+    populateData("LICENSED_DOGS", "/csv/census/licensed_dogs.csv", ParquetFormat, schema, Map.empty)
 
     // create the views
     executeDDL(Seq(
@@ -85,7 +85,7 @@ object CensusDB {
        |    entry_sequence as sequence,
        |    age
        |  FROM
-       |    $schema.foreigners
+       |    $schema.visitors
     """.stripMargin
 
   private def viewResident(schema: String): String =
@@ -109,7 +109,7 @@ object CensusDB {
        |    region,
        |    city_name
        |  FROM
-       |    $schema.dogs
+       |    $schema.licensed_dogs
     """.stripMargin
 
   private def viewResidentEnumInTown(schema: String): String =
@@ -132,7 +132,7 @@ object CensusDB {
        |    REGION,
        |    CITY_NAME
        |  FROM
-       |    $schema.foreigners
+       |    $schema.visitors
     """.stripMargin
 
   private def populateData(

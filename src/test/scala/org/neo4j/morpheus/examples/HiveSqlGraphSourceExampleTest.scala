@@ -7,8 +7,8 @@ class HiveSqlGraphSourceExampleTest extends ExampleTest {
     validate(HiveSqlGraphSourceExample.main(Array.empty),
       """|CENSUS.TOWN table for HIVE successfully
          |CENSUS.RESIDENTS table for HIVE successfully
-         |CENSUS.FOREIGNERS table for HIVE successfully
-         |CENSUS.DOGS table for HIVE successfully
+         |CENSUS.VISITORS table for HIVE successfully
+         |CENSUS.LICENSED_DOGS table for HIVE successfully
          |+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          || n                                                                                                                                                | r             | m                                                  |
          |+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
