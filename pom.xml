@@ -12,7 +12,7 @@
 
   <repositories>
     <repository>
-      <id>morpheus-releases</id>
+      <id>morpheus-release</id>
       <name>Morpheus private release repository</name>
       <url>https://neo.jfrog.io/neo/morpheus-release</url>
     </repository>
