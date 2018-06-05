@@ -4,7 +4,7 @@
 
   <groupId>org.opencypher</groupId>
   <artifactId>morpheus-examples</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0-EAP0</version>
 
   <name>Morpheus Examples</name>
 
