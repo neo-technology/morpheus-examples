@@ -1,369 +1,281 @@
-Morpheus User Guide - Pre-Release
+= Morpheus User Guide - Pre-Release
+:toc:
 
-link:#h.mzkc1ofuej89[Background]        link:#h.mzkc1ofuej89[2]
+// link:#h.mzkc1ofuej89[Background]link:#h.mzkc1ofuej89[2]
 
-link:#h.ns2vuy395yv6[Prerequisites]        link:#h.ns2vuy395yv6[2]
+// link:#h.ns2vuy395yv6[Prerequisites]link:#h.ns2vuy395yv6[2]
 
-link:#h.i8vgpif1hq53[What is Morpheus?]        link:#h.i8vgpif1hq53[2]
+// link:#h.i8vgpif1hq53[What is Morpheus?]link:#h.i8vgpif1hq53[2]
 
-link:#h.lwd9uol9qdjz[Morpheus Licensing]        link:#h.lwd9uol9qdjz[2]
+// link:#h.lwd9uol9qdjz[Morpheus Licensing]link:#h.lwd9uol9qdjz[2]
 
-link:#h.e0nra1f72prz[Components of
-Morpheus]        link:#h.e0nra1f72prz[2]
+// link:#h.e0nra1f72prz[Components of Morpheus]link:#h.e0nra1f72prz[2]
 
-link:#h.rvk0tohzzyz8[What is the relationship between Cypher for Apache
-Spark (CAPS) and Morpheus?   Are they the same
-thing?]        link:#h.rvk0tohzzyz8[3]
+// link:#h.rvk0tohzzyz8[What is the relationship between Cypher for Apache Spark (CAPS) and Morpheus?  Are they the same thing?]link:#h.rvk0tohzzyz8[3]
 
-link:#h.mg36oagyy499[What’s the Data Lake Integrator
-(DLI)?]        link:#h.mg36oagyy499[3]
+// link:#h.mg36oagyy499[What's the Data Lake Integrator (DLI)?]link:#h.mg36oagyy499[3]
 
-link:#h.e340v2lk6alu[Language Support]        link:#h.e340v2lk6alu[4]
+// link:#h.e340v2lk6alu[Language Support]link:#h.e340v2lk6alu[4]
 
-link:#h.ayps3e6369fi[Installing Morpheus]        link:#h.ayps3e6369fi[4]
+// link:#h.ayps3e6369fi[Installing Morpheus]link:#h.ayps3e6369fi[4]
 
-link:#h.ers2fpbowj2b[How to get Morpheus]        link:#h.ers2fpbowj2b[4]
+// link:#h.ers2fpbowj2b[How to get Morpheus]link:#h.ers2fpbowj2b[4]
 
-link:#h.b4guobfq57p2[Building Applications with
-Morpheus]        link:#h.b4guobfq57p2[5]
+// link:#h.b4guobfq57p2[Building Applications with Morpheus]link:#h.b4guobfq57p2[5]
 
-link:#h.inqumsniyj4i[Making Graphs from
-Tables]        link:#h.inqumsniyj4i[5]
+// link:#h.inqumsniyj4i[Making Graphs from Tables]link:#h.inqumsniyj4i[5]
 
-link:#h.locb17o3n3fu[The Tables for Labels
-Model]        link:#h.locb17o3n3fu[6]
+// link:#h.locb17o3n3fu[The Tables for Labels Model]link:#h.locb17o3n3fu[6]
 
-link:#h.pj48jyrbbvio[Example]        link:#h.pj48jyrbbvio[6]
+// link:#h.pj48jyrbbvio[Example]link:#h.pj48jyrbbvio[6]
 
-link:#h.it4ess8it3n1[Important Morpheus Constraints on Tables for
-Labels]        link:#h.it4ess8it3n1[7]
+// link:#h.it4ess8it3n1[Important Morpheus Constraints on Tables for Labels]link:#h.it4ess8it3n1[7]
 
-link:#h.l33wxnu3xw9x[Normalize your Data]        link:#h.l33wxnu3xw9x[7]
+// link:#h.l33wxnu3xw9x[Normalize your Data]link:#h.l33wxnu3xw9x[7]
 
-link:#h.9oos2hyrjtxw[Multiply Labeled
-Nodes]        link:#h.9oos2hyrjtxw[7]
+// link:#h.9oos2hyrjtxw[Multiply Labeled Nodes]link:#h.9oos2hyrjtxw[7]
 
-link:#h.5q9ppiq7ljsv[Preparing your Data]        link:#h.5q9ppiq7ljsv[8]
+// link:#h.5q9ppiq7ljsv[Preparing your Data]link:#h.5q9ppiq7ljsv[8]
 
-link:#h.3u3kswint514[Express Graph
-Mappings]        link:#h.3u3kswint514[8]
+// link:#h.3u3kswint514[Express Graph Mappings]link:#h.3u3kswint514[8]
 
-link:#h.nycrmr9nf638[Create CAPS Tables, and then the
-graph]        link:#h.nycrmr9nf638[8]
+// link:#h.nycrmr9nf638[Create CAPS Tables, and then the graph]link:#h.nycrmr9nf638[8]
 
-link:#h.enhn5vdoj8wr[Running Cypher]        link:#h.enhn5vdoj8wr[9]
+// link:#h.enhn5vdoj8wr[Running Cypher]link:#h.enhn5vdoj8wr[9]
 
-link:#h.i1kpljen9btc[Running Cypher in
-Spark]        link:#h.i1kpljen9btc[9]
+// link:#h.i1kpljen9btc[Running Cypher in Spark]link:#h.i1kpljen9btc[9]
 
-link:#h.b0eytcr35enw[Cypher Runs on top of Spark
-SQL]        link:#h.b0eytcr35enw[9]
+// link:#h.b0eytcr35enw[Cypher Runs on top of Spark SQL]link:#h.b0eytcr35enw[9]
 
-link:#h.qeazvh4x2vs[Create and Read Only]        link:#h.qeazvh4x2vs[9]
+// link:#h.qeazvh4x2vs[Create and Read Only]link:#h.qeazvh4x2vs[9]
 
-link:#h.opgp1lqj88kx[Supported Subset of
-Cypher]        link:#h.opgp1lqj88kx[9]
+// link:#h.opgp1lqj88kx[Supported Subset of Cypher]link:#h.opgp1lqj88kx[9]
 
-link:#h.jecf7updnixi[Property Graph Data Sources
-(PGDSs)]        link:#h.jecf7updnixi[10]
+// link:#h.jecf7updnixi[Property Graph Data Sources (PGDSs)]link:#h.jecf7updnixi[10]
 
-link:#h.mp2vdgsu7hsd[Multiple Graph Support for
-Cypher]        link:#h.mp2vdgsu7hsd[10]
+// link:#h.mp2vdgsu7hsd[Multiple Graph Support for Cypher]link:#h.mp2vdgsu7hsd[10]
 
-link:#h.xebkkk2cmsoi[Motivation]        link:#h.xebkkk2cmsoi[10]
+// link:#h.xebkkk2cmsoi[Motivation]link:#h.xebkkk2cmsoi[10]
 
-link:#h.e5cczjk8hxo7[Status of Multi-Graph
-Support]        link:#h.e5cczjk8hxo7[10]
+// link:#h.e5cczjk8hxo7[Status of Multi-Graph Support]link:#h.e5cczjk8hxo7[10]
 
-link:#h.58n8y7m64o5t[Example Query &
-Discussion]        link:#h.58n8y7m64o5t[11]
+// link:#h.58n8y7m64o5t[Example Query & Discussion]link:#h.58n8y7m64o5t[11]
 
-link:#h.b0p6ql7mesk4[SQL DDL (Data Definition
-Language)]        link:#h.b0p6ql7mesk4[12]
+// link:#h.b0p6ql7mesk4[SQL DDL (Data Definition Language)]link:#h.b0p6ql7mesk4[12]
 
-link:#h.ouy9c0nm8zlv[Motivation]        link:#h.ouy9c0nm8zlv[12]
+// link:#h.ouy9c0nm8zlv[Motivation]link:#h.ouy9c0nm8zlv[12]
 
-link:#h.atk0jl1jfc52[Approach]        link:#h.atk0jl1jfc52[12]
+// link:#h.atk0jl1jfc52[Approach]link:#h.atk0jl1jfc52[12]
 
-link:#h.vjuki17g0w3e[Example]        link:#h.vjuki17g0w3e[12]
+// link:#h.vjuki17g0w3e[Example]link:#h.vjuki17g0w3e[12]
 
-link:#h.1s8vwp55ihks[How to use it]        link:#h.1s8vwp55ihks[13]
+// link:#h.1s8vwp55ihks[How to use it]link:#h.1s8vwp55ihks[13]
 
-link:#h.r8avqf756m3p[Caching and
-Performance]        link:#h.r8avqf756m3p[16]
+// link:#h.r8avqf756m3p[Caching and Performance]link:#h.r8avqf756m3p[16]
 
-link:#h.pwqpx5kmwf80[Option 1 - Cache the backing
-table]        link:#h.pwqpx5kmwf80[16]
+// link:#h.pwqpx5kmwf80[Option 1 - Cache the backing table]link:#h.pwqpx5kmwf80[16]
 
-link:#h.6wxspmd34p0m[Option 2 - Cache the entire
-graph]        link:#h.6wxspmd34p0m[17]
+// link:#h.6wxspmd34p0m[Option 2 - Cache the entire graph]link:#h.6wxspmd34p0m[17]
 
-link:#h.130o8ph0f4fl[Architecture &
-Usage]        link:#h.130o8ph0f4fl[17]
+// link:#h.130o8ph0f4fl[Architecture & Usage]link:#h.130o8ph0f4fl[17]
 
-link:#h.u4rrjnfmvnfu[Distributed vs. Federated Query
-Processing]        link:#h.u4rrjnfmvnfu[17]
+// link:#h.u4rrjnfmvnfu[Distributed vs. Federated Query Processing]link:#h.u4rrjnfmvnfu[17]
 
-link:#h.j3yjfjbacw43[Spark Independence]        link:#h.j3yjfjbacw43[18]
+// link:#h.j3yjfjbacw43[Spark Independence]link:#h.j3yjfjbacw43[18]
 
-link:#h.pj14svxc4ff8[Resources & Links]        link:#h.pj14svxc4ff8[18]
+// link:#h.pj14svxc4ff8[Resources & Links]link:#h.pj14svxc4ff8[18]
+
 
 [[h.mzkc1ofuej89]]
-Background
-----------
+== Background
 
-This document is intended as basic user-level documentation for the
-Morpheus product.
+This document is intended as basic user-level documentation for the Morpheus product.
+
 
 [[h.ns2vuy395yv6]]
-Prerequisites
-~~~~~~~~~~~~~
+=== Prerequisites
 
-In order to get use of out of this document, some basic background with
-Spark, DataFrames, and the Neo4j property graph data model is required.
-  If you need quick tutorials, the following are recommended.
+In order to get use of out of this document, some basic background with Spark, DataFrames, and the Neo4j property graph data model is required.
+If you need quick tutorials, the following are recommended.
 
-* https://www.google.com/url?q=https://jaceklaskowski.gitbooks.io/mastering-apache-spark/content/spark-overview.html&sa=D&ust=1528226567186000[Spark
-overview]
-* https://www.google.com/url?q=https://hortonworks.com/tutorial/dataframe-and-dataset-examples-in-spark-repl/&sa=D&ust=1528226567187000[DataFrames
-tutorial]
-* https://www.google.com/url?q=https://neo4j.com/developer/graph-database/&sa=D&ust=1528226567187000[Property
-graph tutorial]
+* https://www.google.com/url?q=https://jaceklaskowski.gitbooks.io/mastering-apache-spark/content/spark-overview.html&sa=D&ust=1528226567186000[Spark overview]
+* https://www.google.com/url?q=https://hortonworks.com/tutorial/dataframe-and-dataset-examples-in-spark-repl/&sa=D&ust=1528226567187000[DataFrames tutorial]
+* https://www.google.com/url?q=https://neo4j.com/developer/graph-database/&sa=D&ust=1528226567187000[Property graph tutorial]
+
 
 [[h.i8vgpif1hq53]]
-What is Morpheus?
-~~~~~~~~~~~~~~~~~
+=== What is Morpheus?
 
-Morpheus is a set of libraries and technologies that let users perform
-data analysis and data integration on top of Apache Spark, using the
-Cypher query language.  Spark already provides a lot of facilities for
-loading and querying data using Spark SQL, and Morpheus extends the
-abilities of Spark into the property graph world.  Morpheus is a
-proprietary product of Neo4j.
+Morpheus is a set of libraries and technologies that let users perform data analysis and data integration on top of Apache Spark, using the Cypher query language.
+Spark already provides a lot of facilities for loading and querying data using Spark SQL, and Morpheus extends the abilities of Spark into the property graph world.
+Morpheus is a proprietary product of Neo4j.
+
 
 [[h.lwd9uol9qdjz]]
-Morpheus Licensing
-~~~~~~~~~~~~~~~~~~
+=== Morpheus Licensing
 
-As of early May 2018 this has not been finalized, but the model will
-likely be an add-on license to an existing Neo4j Enterprise edition
-license, or part of a bundle which includes Neo4j enterprise.  
+As of early May 2018 this has not been finalized, but the model will likely be an add-on license to an existing Neo4j Enterprise edition license, or part of a bundle which includes Neo4j enterprise.
+
 
 [[h.e0nra1f72prz]]
-Components of Morpheus
-~~~~~~~~~~~~~~~~~~~~~~
+=== Components of Morpheus
 
 Morpheus consists of a number of parts:
 
-* https://www.google.com/url?q=https://github.com/neo-technology/morpheus&sa=D&ust=1528226567188000[Property
-Graph Data Stores (PGDSs)] - software components for loading and saving
-graphs from various sources and sinks (Parquet, HDFS, Neo4j, relational
-databases)
-* https://www.google.com/url?q=https://github.com/opencypher/cypher-for-apache-spark&sa=D&ust=1528226567188000[Cypher
-for Apache Spark (CAPS)] - software components which implement the
-Cypher language on top of Spark SQL operators
-* Okapi - a cypher language processing pipeline, and reusable
-architecture for implementing cypher in a new place.   CAPS depends on
-Okapi, but Okapi is not specific to spark or hadoop.  
-* SQL DDL - a set of extensions to the SQL language for expressing how
-SQL views map to graphs.  The purpose of this is to allow pulling a
-graph straight out of a relational database.  This component is
-integrated with the SQL PGDS and is only usable in conjunction with it.
-* Cypher 10 multiple graph extensions - a set of changes to the core
-Cypher language itself, that make it possible to query multiple named
-graphs in the same query.
+* https://www.google.com/url?q=https://github.com/neo-technology/morpheus&sa=D&ust=1528226567188000[Property Graph Data Stores (PGDSs)] -- software components for loading and saving graphs from various sources and sinks (Parquet, HDFS, Neo4j, relational databases).
+* https://www.google.com/url?q=https://github.com/opencypher/cypher-for-apache-spark&sa=D&ust=1528226567188000[Cypher for Apache Spark (CAPS)] -- software components which implement the Cypher language on top of Spark SQL operators
+* Okapi--a cypher language processing pipeline, and reusable architecture for implementing cypher in a new place.
+  CAPS depends on Okapi, but Okapi is not specific to spark or hadoop.
+* SQL DDL--a set of extensions to the SQL language for expressing how SQL views map to graphs.
+  The purpose of this is to allow pulling a graph straight out of a relational database.
+  This component is integrated with the SQL PGDS and is only usable in conjunction with it.
+* Cypher 10 multiple graph extensions- a set of changes to the core Cypher language itself, that make it possible to query multiple named graphs in the same query.
 
-(As this documentation evolves, we’ll try to include a section on each
-component)
+(As this documentation evolves, we'll try to include a section on each component)
+
 
 [[h.rvk0tohzzyz8]]
-What is the relationship between Cypher for Apache Spark (CAPS) and
-Morpheus?   Are they the same thing?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== What is the relationship between Cypher for Apache Spark (CAPS) and Morpheus?  Are they the same thing?
 
-CAPS and Morpheus are different.  The relationship is that CAPS is a
-part of Morpheus, but only one part.
+CAPS and Morpheus are different.
+The relationship is that CAPS is a part of Morpheus, but only one part.
 
-CAPS is an open source package that implements the language on top of
-Spark.  But it is not recommended to use CAPS alone because the property
-graph data stores are needed to do a wide variety of useful work.   The
-primary purpose of open sourcing CAPS is that it comes with the Okapi
-pipeline, which makes it easy to implement Cypher on top of new data
-stores.  As such, it’s a kind of reference implementation of Cypher
-outside of Neo4j.   This implementation should be open to everyone who
-might port Cypher to a new environment.
+CAPS is an open source package that implements the language on top of Spark.
+But it is not recommended to use CAPS alone because the property graph data stores are needed to do a wide variety of useful work.
+The primary purpose of open sourcing CAPS is that it comes with the Okapi pipeline, which makes it easy to implement Cypher on top of new data stores.
+As such, it's a kind of reference implementation of Cypher outside of Neo4j.
+This implementation should be open to everyone who might port Cypher to a new environment.
 
- +
-Morpheus will be a commercially supported product.  CAPS is an open
-source product with no support.
+
+Morpheus will be a commercially supported product.
+CAPS is an open source product with no support.
+
 
 [[h.mg36oagyy499]]
-What’s the Data Lake Integrator (DLI)?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== What's the Data Lake Integrator (DLI)?
 
-The Data Lake Integrator was an earlier name used while the product was
-in development.  Now it is just referred to as Morpheus.   The concept
-behind DLI was that users would have data stored in many different
-locations (neo4j, HDFS, Hive, orc, other formats/locations) comprising a
-“data lake” and that cypher within spark could be used as a layer to
-pull all of that data together and integrate your data lake.
+The Data Lake Integrator was an earlier name used while the product was in development.
+Now it is just referred to as Morpheus.
+The concept behind DLI was that users would have data stored in many different locations (neo4j, HDFS, Hive, orc, other formats/locations) comprising a "data lake" and that cypher within spark could be used as a layer to pull all of that data together and integrate your data lake.
+
 
 [[h.e340v2lk6alu]]
-Language Support
-^^^^^^^^^^^^^^^^
+==== Language Support
 
-At the present time, only Scala is supported.  As such, this
-documentation makes reference to Scala code snippets and conventions.
- Python support is being considered, but it is subject to
-prioritization.   Because Scala compiles down to class files, you can
-probably use it with Java, but it might not be idiomatic.
+At the present time, only Scala is supported.
+As such, this documentation makes reference to Scala code snippets and conventions.
+Python support is being considered, but it is subject to prioritization.
+Because Scala compiles down to class files, you can probably use it with Java, but it might not be idiomatic.
+
 
 [[h.ayps3e6369fi]]
-Installing Morpheus
-~~~~~~~~~~~~~~~~~~~
+=== Installing Morpheus
 
-Morpheus is packaged as a single bundled JAR file.   This JAR file
-contains everything that you need to use the product.  In spark
-environments, you can submit jobs with any additional JARs that are
-needed, and in order to use Morpheus this is all that’s required.  Your
-spark environment may also allow you to put in default JARs which are
-included with all spark jobs.  If this is the case, then you can
-“install” morpheus by changing the cluster configuration to include the
-bundled JAR on the classpath of all jobs, but this probably isn’t
-required to use it.
+Morpheus is packaged as a single bundled JAR file.
+This JAR file contains everything that you need to use the product.
+In spark environments, you can submit jobs with any additional JARs that are needed, and in order to use Morpheus this is all that's required.
+Your spark environment may also allow you to put in default JARs which are included with all spark jobs.
+If this is the case, then you can "install" morpheus by changing the cluster configuration to include the bundled JAR on the classpath of all jobs, but this probably isn't required to use it.
+
 
 [[h.ers2fpbowj2b]]
-How to get Morpheus
-^^^^^^^^^^^^^^^^^^^
+==== How to get Morpheus
 
 In your pom.xml you should add the repository where releases live:
 
+[source, xml]
+----
 <repository>
-
- <id>morpheus-releases</id>
-
- <name>Morpheus private release repository</name>
-
- <url>https://neo.jfrog.io/neo/morpheus-release</url>
-
+  <id>morpheus-releases</id>
+  <name>Morpheus private release repository</name>
+  <url>https://neo.jfrog.io/neo/morpheus-release</url>
 </repository>
+----
 
-Ensure that you have a $HOME/.m2/settings.xml file which provides login
-credentials for that repository:  (username and password have been
-omitted, you will have to obtain these separately and plug them in)
+Ensure that you have a $HOME/.m2/settings.xml file which provides login credentials for that repository: (username and password have been omitted, you will have to obtain these separately and plug them in)
 
- <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
-      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-
-                         
-https://maven.apache.org/xsd/settings-1.0.0.xsd">
-
-  <servers>
-
-    <server>
-
-        <id>morpheus-releases</id>
-
-        <username>USERNAME</username>
-
-        <password>PASSWORD</password>
-
-    </server>
-
-  </servers>
-
+[source, xml]
+----
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+ <servers>
+  <server>
+    <id>morpheus-releases</id>
+    <username>USERNAME</username>
+    <password>PASSWORD</password>
+  </server>
+ </servers>
 </settings>
+----
+
 
 [[h.b4guobfq57p2]]
-Building Applications with Morpheus
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Building Applications with Morpheus
 
-There are several ways to build an application using Morpheus and run it
-on a cluster, and we enumerate a few here:
+There are several ways to build an application using Morpheus and run it on a cluster, and we enumerate a few here:
 
 * Scala application using Maven
-
 * Fat JAR approach
 * Thin JAR approach
-
 * Notebook integration
 
-Scala application using Maven, fat JAR approach: Add to your pom.xml a
-dependency to Morpheus according to these coordinates: +
- +
+*Scala application using Maven, fat JAR approach:*
+Add to your pom.xml a dependency to Morpheus according to these coordinates:
+
+[source, xml]
+----
 <dependency>
-
-  <groupId>org.neo4j</groupId>
-
-  <artifactId>morpheus-bundle</artifactId>
-
+ <groupId>org.neo4j</groupId>
+ <artifactId>morpheus-bundle</artifactId>
 </dependency>
+----
 
-Then build a fat JAR out of your application and its dependencies, for
-example using the maven-shade-plugin. This JAR is what you submit to the
-Spark cluster via spark-submit; it is the Spark job.
+Then build a fat JAR out of your application and its dependencies, for example using the maven-shade-plugin.
+This JAR is what you submit to the Spark cluster via spark-submit; it is the Spark job.
 
-Scala application using Maven, thin JAR approach: Follow the same steps
-as above, but instead of building a fat JAR, simply build a normal thin
-JAR of your application code, and submit both this and the
-morpheus-bundle JAR which is acquired from the release bundle (its
-default name is morpheus-bundle.jar) to the Spark cluster via
-spark-submit. +
- +
-Please note that if you are using additional external libraries in your
-application, these will also need to be submitted to the Spark cluster
-via spark-submit. +
+*Scala application using Maven, thin JAR approach:*
+Follow the same steps as above, but instead of building a fat JAR, simply build a normal thin JAR of your application code, and submit both this and the morpheus-bundle JAR which is acquired from the release bundle (its default name is morpheus-bundle.jar) to the Spark cluster via spark-submit.
 
-Notebook integration: The approaches are similar to the above options;
-either upload the morpheus-bundle.jar to your cluster instance as a
-library, or add a Maven dependency. The second option may or may not be
-supported by your specific notebook depending on whether it can support
-additional Maven repositories with user credentials.
+Please note that if you are using additional external libraries in your application, these will also need to be submitted to the Spark cluster via spark-submit.
+
+*Notebook integration:*
+The approaches are similar to the above options; either upload the morpheus-bundle.jar to your cluster instance as a library, or add a Maven dependency.
+The second option may or may not be supported by your specific notebook depending on whether it can support additional Maven repositories with user credentials.
+
 
 [[h.inqumsniyj4i]]
-Making Graphs from Tables
--------------------------
+== Making Graphs from Tables
 
-When you start off with Morpheus, this is probably the very first thing
-you’ll do, if you’re not pulling your data directly from Neo4j.  This
-section describes how to take CSV files, relations, or any “data
-squares” and turn them into graphs which can be queried in Morpheus.
+When you start off with Morpheus, this is probably the very first thing you'll do, if you're not pulling your data directly from Neo4j.
+This section describes how to take CSV files, relations, or any "data squares" and turn them into graphs which can be queried in Morpheus.
 
-The steps you’ll follow to make a graph are as follows:
+The steps you'll follow to make a graph are as follows:
 
-1.  Prepare your data into “tables for labels” format (described below)
-2.  Express a mapping, which tells Morpheus what the keys of the tables
-are, what the properties and labels on your graph are, and so on.
-3.  Create CAPSNodeTable and CAPSRelationshipTable objects.  These
-objects marry the source data with the mapping created above.
-4.  Create a graph from any number of CAPSNodeTables and
-CAPSRelationshipTables.
+. Prepare your data into "tables for labels" format (described below)
+. Express a mapping, which tells Morpheus what the keys of the tables are, what the properties and labels on your graph are, and so on.
+. Create CAPSNodeTable and CAPSRelationshipTable objects.
+  These objects marry the source data with the mapping created above.
+. Create a graph from any number of CAPSNodeTables and CAPSRelationshipTables.
 
-To understand this, we have to first explain the tables for labels
-model.
+To understand this, we have to first explain the tables for labels model.
+
 
 [[h.locb17o3n3fu]]
-The Tables for Labels Model
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== The Tables for Labels Model
 
-“Tables for labels” refers to a way of formatting tabular data so that
-the mapping to a graph is straightforward and easy.   To describe this
-briefly, it means that each label combination in the graph gets its own
-table.  Each relationship also gets its own table.  Each “table for
-label” contains a primary key (which also acts as a node identifier).  
+"Tables for labels" refers to a way of formatting tabular data so that the mapping to a graph is straightforward and easy.
+To describe this briefly, it means that each label combination in the graph gets its own table.
+Each relationship also gets its own table.
+Each "table for label" contains a primary key (which also acts as a node identifier).
 Each relationship table consists of two foreign keys.
 
+
 [[h.pj48jyrbbvio]]
-Example
-^^^^^^^
+==== Example
 
-Person
-
+.Person
 [[t.9bcf16bd9711e377ebe0a87d5c84ab79e1621b74]][[t.0]]
-
 [width="100%",cols="50%,50%",]
 |=========
 |id |name
@@ -371,10 +283,8 @@ Person
 |2 |Philip
 |=========
 
-Food
-
+.Food
 [[t.d88018b88b73b82f2f7568b87464f9e3791486c5]][[t.1]]
-
 [width="100%",cols="50%,50%",]
 |==========
 |id |name
@@ -382,10 +292,8 @@ Food
 |4 |Oranges
 |==========
 
-Likes
-
+.Likes
 [[t.3d7be1f4a5d0664f30c42c1e327d86c1f5f60a2a]][[t.2]]
-
 [width="100%",cols="34%,33%,33%",]
 |==========================
 |rel_id |person_id |food_id
@@ -393,42 +301,36 @@ Likes
 |6 |2 |4
 |==========================
 
-This is a graph in “tables for labels” format.
+This is a graph in "tables for labels" format.
 
 It corresponds to a graph that looks like this:
 
- +
-CREATE (:Person \{ name: “Mats” })-[:likes]->(:Food \{ name: “Apples” })
+[source, cypher]
+----
+CREATE (:Person { name: "Mats" })-[:likes]->(:Food { name: "Apples" })
+CREATE (:Person { name: "Philip" })-[:likes]->(:Food { name: "Oranges"});
+----
 
-CREATE (:Person \{ name: “Philip” })-[:likes]->(:Food \{ name: “Oranges”
-});
+Note that the "id" fields do not automatically become properties, they are used only internally.
 
-Note that the “id” fields do not automatically become properties, they
-are used only internally.
 
 [[h.it4ess8it3n1]]
-Important Morpheus Constraints on Tables for Labels
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Important Morpheus Constraints on Tables for Labels
 
 * All tables must have a unique ID
-* Relationships must have their own IDs.  A source and target ID is not
-enough.
-* That unique ID must be a 64-bit long integer (string IDs presently not
-supported)
-* All IDs must be graph-globally unique (that is, IDs cannot be repeated
-even between tables)
+* Relationships must have their own IDs. A source and target ID is not enough.
+* That unique ID must be a 64-bit long integer (string IDs presently not supported)
+* All IDs must be graph-globallyunique (that is, IDs cannot be repeated even between tables)
+
 
 [[h.l33wxnu3xw9x]]
-Normalize your Data
-^^^^^^^^^^^^^^^^^^^
+==== Normalize your Data
 
-Notice that in the example above, the data is highly normalized.  In the
-relational world it would be typical to have multiple entries for a
-certain node in a single table, when the table is denormalized.  This
-would represent a “one-to-many” relationship, for example:
+Notice that in the example above, the data is highly normalized.
+In the relational world it would be typical to have multiple entries for a certain node in a single table, when the table is denormalized.
+This would represent a "one-to-many" relationship, for example:
 
-Purchases
-
+.Purchases
 [[t.ca4a94ae2b1fa7f4d16b0db134a0d328b73ef808]][[t.3]]
 
 [width="100%",cols="20%,20%,20%,20%,20%",]
@@ -438,680 +340,499 @@ Purchases
 |1 |Bob |3 |Shirts |5
 |==============================================================
 
-This data is not in “tables for labels” format, rather we would probably
-model this in a graph as (:Customer)-[:purchased]->(:Product).   In
-order to lift this data into that graph format, we would have to
-refactor the data into three tables:  Customer, Product, and purchase.
+This data is not in "tables for labels" format, rather we would probably model this in a graph as (:Customer)-[:purchased]->(:Product).
+In order to lift this data into that graph format, we would have to refactor the data into three tables: Customer, Product, and purchase.
+
 
 [[h.9oos2hyrjtxw]]
-Multiply Labeled Nodes
-^^^^^^^^^^^^^^^^^^^^^^
+==== Multiply Labeled Nodes
 
-In the tables for labels format, suppose we had a node that was a
-:Person and also an :Employee, while other nodes were :Person and
-:Customer.  In this kind of a setup, there would need to be two tables:
- Person_Employee (containing all nodes that were labeled with both of
-those) and a Person_Customer table.  In this way, all persons would be
-found as the union of both tables, and we can assure that each person is
-only stored once.  Further, if it’s needed, Customers can then have a
-different set of properties / schema than employees.
+In the tables for labels format, suppose we had a node that was a :Person and also an :Employee, while other nodes were :Person and :Customer.
+In this kind of a setup, there would need to be two tables: Person_Employee (containing all nodes that were labeled with both of those) and a Person_Customer table.
+In this way, all persons would be found as the union of both tables, and we can assure that each person is only stored once.
+Further, if it's needed, Customers can then have a different set of properties / schema than employees.
+
 
 [[h.5q9ppiq7ljsv]]
-Preparing your Data
-~~~~~~~~~~~~~~~~~~~
+=== Preparing your Data
 
-This is a large topic, best suited for another document.  Because your
-data will already be accessible by spark and SQL, that environment is
-best suited for manipulating the data into the proper format.  Consult
-documentation on spark and SparkSQL for how to do this.
+This is a large topic, best suited for another document.
+Because your data will already be accessible by spark and SQL, that environment is best suited for manipulating the data into the proper format.
+Consult documentation on spark and SparkSQL for how to do this.
 
-The target of the prep step is to produce DataFrame objects following
-the “Tables for Labels” constructs above.
+The target of the prep step is to produce DataFrame objects following the "Tables for Labels" constructs above.
+
 
 [[h.3u3kswint514]]
-Express Graph Mappings
-~~~~~~~~~~~~~~~~~~~~~~
+=== Express Graph Mappings
 
-Graph mappings are scala objects you create that tell morpheus how to
-read data frames and turn them into nodes, properties, and
-relationships.   Here’s a simple example that follows the person / food
-example earlier:
+Graph mappings are scala objects you create that tell morpheus how to read data frames and turn them into nodes, properties, and relationships.
+Here's a simple example that follows the person / food example earlier:
 
+[source, scala]
+----
 val personMapping = NodeMapping
-
-.withSourceIdKey(“id”)
-
-.withImpliedLabel(“Person”)
-
-.withPropertyKeys(“name”)
-
+      .withSourceIdKey("id")
+      .withImpliedLabel("Person")
+      .withPropertyKeys("name")
 val foodMapping = NodeMapping
-
-        .withSourceIdKey(“id”)
-
-        .withImpliedLabel(“Food”)
-
-        .withPropertyKeys(“name”)
-
+      .withSourceIdKey("id")
+      .withImpliedLabel("Food")
+      .withPropertyKeys("name")
 val likesMapping = RelationshipMapping
+      .withSourceIdKey("rel_id")
+      .withSourceStartNodeKey("person_id")
+      .withSourceEndNodeKey("food_id")
+      .withRelType("likes")
+----
 
-        .withSourceIdKey(“rel_id”)
+Here we create one mapping for every label combination and relationship type.
+You can see here how we are telling morpheus exactly how the data is shaped into a graph.
 
-        .withSourceStartNodeKey(“person_id”)
-
-        .withSourceEndNodeKey(“food_id”)
-
-        .withRelType(“likes”)
-
-Here we create one mapping for every label combination and relationship
-type.  You can see here how we are telling morpheus exactly how the data
-is shaped into a graph.
 
 [[h.nycrmr9nf638]]
-Create CAPS Tables, and then the graph
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Create CAPS Tables, and then the graph
 
+[source, scala]
+----
 val personNodes = CAPSNodeTable(personMapping, personDataFrame)
-
 val foodNodes = CAPSNodeTable(foodMapping, foodDataFrame)
-
 val likesRels = CAPSRelationshipTable(likesMapping, likesDataMapping)
 
 val graph = capsSession.readFrom(personNodes, foodNodes, likesRels)
+----
 
-At this step, the graph object is now complete, and we have everything
-we need to run cypher.
+At this step, the graph object is now complete, and we have everything we need to run cypher.
+
 
 [[h.enhn5vdoj8wr]]
-Running Cypher
-~~~~~~~~~~~~~~
+=== Running Cypher
 
 A simple example would look like this:
 
-val result = graph.cypher(“MATCH (p:Person)-[:likes]->(f:Food) RETURN
-p.name, f.name”)
-
+[source, scala]
+----
+val result = graph.cypher("MATCH (p:Person)-[:likes]->(f:Food) RETURN p.name, f.name")
 result.getRecords.show
+----
 
-This would execute the simple cypher query and then use some utility
-methods to print the results to the screen.
+This would execute the simple cypher query and then use some utility methods to print the results to the screen.
+
 
 [[h.i1kpljen9btc]]
-Running Cypher in Spark
------------------------
+== Running Cypher in Spark
 
-When we refer to Cypher in spark, we’re talking about the regular cypher
-language plus the multiple graph support extensions proposed for Cypher
-10 (those extensions are covered in a later section).
+When we refer to Cypher in spark, we're talking about the regular cypher language plus the multiple graph support extensions proposed for Cypher 10 (those extensions are covered in a later section).
+
 
 [[h.b0eytcr35enw]]
-Cypher Runs on top of Spark SQL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Cypher Runs on top of Spark SQL
 
-The CAPS layer essentially translates cypher queries into spark SQL
-operators.  As a result, certain aspects of cypher like USING INDEX
-would not make sense to support in the spark world.  Additionally, other
-functions like lower() and upper() can easily be duplicated before the
-data is a graph by using Spark SQL functions and primitives.
+The CAPS layer essentially translates cypher queries into spark SQL operators.
+As a result, certain aspects of cypher like USING INDEX would not make sense to support in the spark world.
+Additionally, other functions like lower() and upper() can easily be duplicated before the data is a graph by using Spark SQL functions and primitives.
+
 
 [[h.qeazvh4x2vs]]
-Create and Read Only
-~~~~~~~~~~~~~~~~~~~~
+=== Create and Read Only
 
-Because of the spark programming model, Cypher on Spark will not support
-updates and deletes.  The general approach should be to take one data
-source or graph, transform it into another, and store that.   Underlying
-data sources should be treated as immutable.  As a result, cypher
-clauses like MERGE, DELETE, CREATE, CREATE UNIQUE, LOAD CSV, and others
-are not supported and won’t be supported in the future.
+Because of the spark programming model, Cypher on Spark will not support updates and deletes.
+The general approach should be to take one data source or graph, transform it into another, and store that.
+Underlying data sources should be treated as immutable.
+As a result, cypher clauses like MERGE, DELETE, CREATE, CREATE UNIQUE, LOAD CSV, and others are not supported and won't be supported in the future.
 
-This means that if your use case is filtering / cleaning up data in an
-underlying data source, Morpheus would not a good fit for that use case.
- You can however transform / filter a graph and create a new graph,
-which could then be written back to a source.
+*This means that if your use case is filtering / cleaning up data in an underlying data source, Morpheus would not a good fit for that use case.*
+You can however transform / filter a graph and create a new graph, which could then be written back to a source.
+
 
 [[h.opgp1lqj88kx]]
-Supported Subset of Cypher
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Supported Subset of Cypher
 
-https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1c5_LoI96EYICE6l09rxna-eLO7V-GParEdiHLJJ_Oaw/edit?usp%3Dsharing&sa=D&ust=1528226567211000[This
-spreadsheet] tracks which aspects of Cypher are currently supported.
- Not all functions and graph patterns are yet supported but all of the
-basics are in place.
+https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1c5_LoI96EYICE6l09rxna-eLO7V-GParEdiHLJJ_Oaw/edit?usp%3Dsharing&sa=D&ust=1528226567211000[This spreadsheet] tracks which aspects of Cypher are currently supported.
+Not all functions and graph patterns are yet supported but all of the basics are in place.
 
-High priority, but not yet supported cypher constructs include
-arbitrary-length path expressions.
+High priority, but not yet supported cypher constructs include arbitrary-length path expressions.
+
 
 [[h.jecf7updnixi]]
-Property Graph Data Sources (PGDSs)
------------------------------------
+== Property Graph Data Sources (PGDSs)
 
-Suppose you’ve prepped a number of big graphs using steps described
-earlier.  Once you’ve finished this work, you’ll often want to save the
-resulting graphs for use or analysis later.   Other times, rather than
-doing that mapping work, you’ll want to load a graph that you already
-have directly from Neo4j.  This is what the PGDSs are for.
+Suppose you've prepped a number of big graphs using steps described earlier.
+Once you've finished this work, you'll often want to save the resulting graphs for use or analysis later.
+Other times, rather than doing that mapping work, you'll want to load a graph that you already have directly from Neo4j.
+This is what the PGDSs are for.
 
 Right now, the following sources and sinks are planned to be supported:
 
-* HDFS - graphs are stored as regular files on HDFS
-* SQL - graphs are stored in some data source that supports SQL, such as
-a relational database (mysql, postgres, etc)
+* *HDFS* -- graphs are stored as regular files on HDFS
+* *SQL* -- graphs are stored in some data source that supports SQL, such as a relational database (mysql, postgres, etc)
+** read-only
+* *Neo4j*
+* *Hive* -- a SQL based data warehousing package for Hadoop.
+  Because Hive files are stored on HDFS, Hive support is provided for as part of the HDFS PGDS.
 
-* read-only
+Examples of the usage of these APIs can be found in the morpheus-examples repo.
+https://www.google.com/url?q=https://github.com/neo-technology/morpheus-examples/tree/master/src/main/scala/org/neo4j/morpheus/examples&sa=D&ust=1528226567212000[Link to source code].
 
-* Neo4j
-* Hive - a SQL based data warehousing package for Hadoop.  Because Hive
-files are stored on HDFS, Hive support is provided for as part of the
-HDFS PGDS.
-
-Examples of the usage of these APIs can be found in the
-morpheus-examples repo.  
-https://www.google.com/url?q=https://github.com/neo-technology/morpheus-examples/tree/master/src/main/scala/org/neo4j/morpheus/examples&sa=D&ust=1528226567212000[Link
-to source code].
 
 [[h.mp2vdgsu7hsd]]
-Multiple Graph Support for Cypher
----------------------------------
+== Multiple Graph Support for Cypher
 
-Instead of going through all of the details of how the language has
-changed, this will summarize the key points that end users need to be
-aware of.   For full details and a deep dive about the language changes,
-see the
-https://www.google.com/url?q=https://docs.google.com/presentation/d/1nchDBmYI-FsmlSyuLr6FX6HBDB_pxVg-5EjDgyAp6rg/edit?usp%3Dsharing&sa=D&ust=1528226567213000[Cypher
-10 design document], or contact Stefan Plantikow.  A shorter TLDR
-summary of the changes can be
-https://www.google.com/url?q=https://docs.google.com/document/d/1EAcm1tGuqD6VD6cNpg11PAVewHhN3RQFqdU0yhXNJLc/edit?usp%3Dsharing&sa=D&ust=1528226567213000[found
-here].
+Instead of going through all of the details of how the language has changed, this will summarize the key points that end users need to be aware of.
+For full details and a deep dive about the language changes, see the https://www.google.com/url?q=https://docs.google.com/presentation/d/1nchDBmYI-FsmlSyuLr6FX6HBDB_pxVg-5EjDgyAp6rg/edit?usp%3Dsharing&sa=D&ust=1528226567213000[Cypher 10 design document], or contact Stefan Plantikow.
+A shorter TLDR summary of the changes can be https://www.google.com/url?q=https://docs.google.com/document/d/1EAcm1tGuqD6VD6cNpg11PAVewHhN3RQFqdU0yhXNJLc/edit?usp%3Dsharing&sa=D&ust=1528226567213000[found here].
+
 
 [[h.xebkkk2cmsoi]]
-Motivation
-~~~~~~~~~~
+=== Motivation
 
-Because Morpheus is expected to be used in data integration
-environments, Cypher needs a way of talking about multiple graphs coming
-from different sources, so it can keep everything straight.   A graph
-catalog is needed where we can refer to different graphs by name, so
-that when we write cypher queries it’s clear where things are coming
-from.
+Because Morpheus is expected to be used in data integration environments, Cypher needs a way of talking about multiple graphs coming from different sources, so it can keep everything straight.
+A graph catalog is needed where we can refer to different graphs by name, so that when we write cypher queries it's clear where things are coming from.
+
 
 [[h.e5cczjk8hxo7]]
-Status of Multi-Graph Support
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Status of Multi-Graph Support
 
-As of this writing, it’s envisioned that Neo4j will push these changes
-into the Cypher language specification itself, which will take some
-time.  It’s also anticipated that the core database will eventually
-support the graph registry concept and multi-graph queries, but this has
-not yet been prioritized for build, and so a target release is not yet
-available.   Because the Cypher standards group may have input, the fine
-details of the syntax are subject to change.
+As of this writing, it's envisioned that Neo4j will push these changes into the Cypher language specification itself, which will take some time.
+It's also anticipated that the core database will eventually support the graph registry concept and multi-graph queries, but this has not yet been prioritized for build, and so a target release is not yet available.
+Because the Cypher standards group may have input, the fine details of the syntax are subject to change.
+
 
 [[h.58n8y7m64o5t]]
-Example Query & Discussion
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Example Query & Discussion
 
-Let’s get immediately to an example that illustrates the concepts.
- https://www.google.com/url?q=https://github.com/opencypher/caps-examples/blob/caps-tutorial/src/main/scala/org/opencypher/example/lab2/RecommendationExample.scala&sa=D&ust=1528226567214000[Full
-example source code lives here].
+Let's get immediately to an example that illustrates the concepts.
+https://www.google.com/url?q=https://github.com/opencypher/caps-examples/blob/caps-tutorial/src/main/scala/org/opencypher/example/lab2/RecommendationExample.scala&sa=D&ust=1528226567214000[Full example source code lives here].
 
-The purpose of this query is to integrate data from two different
-sources, which we’ll describe.
+The purpose of this query is to integrate data from two different sources, which we'll describe.
 
-FROM GRAPH allFriends +
-        MATCH (p:Person) +
-    FROM GRAPH purchases.products +
-    MATCH (c:Customer) +
-    WHERE c.name = p.name +
-    CONSTRUCT ON purchases.products, allFriends +
-      CLONE c, p +
-      NEW (c)-[:IS]->(p) +
+[source, cypher]
+----
+FROM GRAPH allFriends
+MATCH (p:Person)
+  FROM GRAPH purchases.products
+  MATCH (c:Customer)
+  WHERE c.name = p.name
+  CONSTRUCT ON purchases.products, allFriends
+   CLONE c, p
+   NEW (c)-[:IS]->(p)
 RETURN GRAPH
+----
 
-There are many new things here!  Here’s a quick list:
+There are many new things here! Here's a quick list:
 
-* The “FROM GRAPH” construct shows that we’re naming graphs already.
- The first graph is called allFriends.  From that graph, we’re taking
-only :Person nodes.
-* The second graph is called purchases.products.  This demonstrates that
-graph names are namespaced, i.e. this refers to the “products” graph in
-the “purchases” namespace.  This provides a mechanism of organizing all
-of the different graphs needed for a full-scale integration.
-* The “WHERE c.name = p.name” step is the data integration.   We’re
-matching up people in one source to customers in another.   Really key
-here -- normally with property graphs we would never do something like
-this, because there would be a relationship between these nodes.
- Because these graphs came from totally different underlying data
-sources, we have to establish that equality this way.
-* CONSTRUCT ON creates a new graph starting from the input graphs.   We
-then clone c and p (remember, we’ve established earlier their names
-match) and then create a new relationship that creates an :IS
-relationship between the two.
+* The "FROM GRAPH" construct shows that we're naming graphs already.
+  The first graph is called allFriends.
+  From that graph, we're taking only :Person nodes.
+* The second graph is called purchases.products.
+  This demonstrates that graph names are namespaced, i.e. this refers to the "products" graph in the "purchases" namespace.
+  This provides a mechanism of organizing all of the different graphs needed for a full-scale integration.
+* The "WHERE c.name = p.name" step is the data integration.
+  We're matching up people in one source to customers in another.
+  Really key here -- normally with property graphs we would never do something like this, because there would be a relationship between these nodes.
+  Because these graphs came from totally different underlying data sources, we have to establish that equality this way.
+* CONSTRUCT ON creates a new graph starting from the input graphs.
+  We then clone c and p (remember, we've established earlier their names match) and then create a new relationship that creates an :IS relationship between the two.
 
-Finally we return the graph.   This last part is very big -- notice
-there is no tabular result, we can return an actual graph.   The reason
-this is such a big and positive change is that it means:
+Finally we return the graph.
+This last part is very big -- notice there is no tabular result, we can return an actual graph.
+The reason this is such a big and positive change is that it means:
 
-* A resulting graph you produce in morpheus can be saved directly back
-to some storage location (HDFS, neo4j)
-* If a cypher query can return a graph, and a cypher query can take a
-graph as an input, then we can “chain cypher queries” together into a
-pipeline of operations.  Previously this wasn’t possible because cypher
-always produced tabular results.
+* A resulting graph you produce in morpheus can be saved directly back to some storage location (HDFS, neo4j)
+* If a cypher query can return a graph, and a cypher query can take a graph as an input, then we can "chain cypher queries" together into a pipeline of operations.
+  Previously this wasn't possible because cypher always produced tabular results.
+
 
 [[h.b0p6ql7mesk4]]
-SQL DDL (Data Definition Language)
-----------------------------------
+== SQL DDL (Data Definition Language)
 
-This component of morpheus deals with how to lift graphs out of existing
-relational databases.  Many people have long realized that the data
-inside of those databases can easily be thought of as a graph, (for
-example customers and their product purchases), but the data isn’t
-formatted correctly to be exploited as such.
+This component of morpheus deals with how to lift graphs out of existing relational databases.
+Many people have long realized that the data inside of those databases can easily be thought of as a graph, (for example customers and their product purchases), but the data isn't formatted correctly to be exploited as such.
 
-Make sure to read the section on making graphs from tables before
-reading this section.  That background knowledge is necessary.
+Make sure to read the section on making graphs from tables before reading this section.
+That background knowledge is necessary.
+
 
 [[h.ouy9c0nm8zlv]]
-Motivation
-~~~~~~~~~~
+=== Motivation
 
-The idea behind SQL DDL is to extend the SQL language to allow it to
-talk about (and eventually later) query property graphs.  The SQL
-standards bodies have been thinking about this for some time, and Neo4j
-has been participating to influence it in a positive and cypher-esque
-direction.
+The idea behind SQL DDL is to extend the SQL language to allow it to talk about (and eventually later) query property graphs.
+The SQL standards bodies have been thinking about this for some time, and Neo4j has been participating to influence it in a positive and cypher-esque direction.
+
 
 [[h.atk0jl1jfc52]]
-Approach
-~~~~~~~~
+=== Approach
 
-As we described in the earlier section, once you have data in a “tables
-for labels” format, Morpheus can lift that data into a graph and you can
-query it with Cypher.  We’ve already covered how that’s done if the data
-in question is already a data frame, or something that can conveniently
-be made a data frame (like a CSV file).
+As we described in the earlier section, once you have data in a "tables for labels" format, Morpheus can lift that data into a graph and you can query it with Cypher.
+We've already covered how that's done if the data in question is already a data frame, or something that can conveniently be made a data frame (like a CSV file).
 
-In a relational database, you’ll approach this differently:
+In a relational database, you'll approach this differently:
 
-* Take existing operational tables and use SQL’s CREATE VIEW to
-transform the data into “tables for labels” format via views.  In this
-way the data stays fresh, and no schema modifications to the underlying
-database are necessary.
+* Take existing operational tables and use SQL's CREATE VIEW to transform the data into "tables for labels" format via views.
+  In this way the data stays fresh, and no schema modifications to the underlying database are necessary.
 * Use SQL DDL statements to express the equivalent of the mapping step
-* Use the SQL data source objects as part of Morpheus to pull graphs
-directly out of the relational database.
+* Use the SQL data source objects as part of Morpheus to pull graphs directly out of the relational database.
+
 
 [[h.vjuki17g0w3e]]
-Example
-~~~~~~~
+=== Example
 
-https://www.google.com/url?q=https://docs.google.com/presentation/d/1Oy0o3rO9envnzLUJzqvtD8EJcS1zbdgubm-TKQy1EZQ/edit?usp%3Dsharing&sa=D&ust=1528226567217000[A
-much more full example can be found in Peter Furniss’ slides].
+https://www.google.com/url?q=https://docs.google.com/presentation/d/1Oy0o3rO9envnzLUJzqvtD8EJcS1zbdgubm-TKQy1EZQ/edit?usp%3Dsharing&sa=D&ust=1528226567217000[A much more full example can be found in Peter Furniss' slides].
 
-        EDGES LABELLED PRESENT_IN +
-           FROM view_resident_enumerated_in_town +
-               MAPPING (PERSON_NUMBER) +
-                    ONTO view_resident(PERSON_NUMBER) +
-                    FOR START NODE LABELLED Resident, Person +
-               MAPPING (REGION, CITY_NAME) +
-                    ONTO town(REGION, CITY_NAME) +
-                    FOR END NODE LABELLED Town
+[source]
+----
+    EDGES LABELLED PRESENT_IN
+     FROM view_resident_enumerated_in_town
+       MAPPING (PERSON_NUMBER)
+          ONTO view_resident(PERSON_NUMBER)
+          FOR START NODE LABELLED Resident, Person
+       MAPPING (REGION, CITY_NAME)
+          ONTO town(REGION, CITY_NAME)
+          FOR END NODE LABELLED Town
+----
+
 
 [[h.1s8vwp55ihks]]
- +
-How to use it
-~~~~~~~~~~~~~
+=== How to use it
 
-A fully worked-through example of how to use a JDBC data source with SQL
-DDL
-https://www.google.com/url?q=https://github.com/neo-technology/morpheus-examples/blob/master/src/main/scala/org/neo4j/morpheus/examples/JdbcSqlGraphSourceExample.scala&sa=D&ust=1528226567218000[can
-be found in the morpheus-examples package].  In that source code, the
-DDL is stored as a class resource you can also find in the source tree.
+A fully worked-through example of how to use a JDBC data source with SQL DDL https://www.google.com/url?q=https://github.com/neo-technology/morpheus-examples/blob/master/src/main/scala/org/neo4j/morpheus/examples/JdbcSqlGraphSourceExample.scala&sa=D&ust=1528226567218000[can be found in the morpheus-examples package].
+In that source code, the DDL is stored as a class resource you can also find in the source tree.
 
-You need to provide a small JSON file with the JDBC mapping, akin to the
-following:
+You need to provide a small JSON file with the JDBC mapping, akin to the following:
 
+[source, json]
+----
 [
-
-  \{
-
-    "storageFormat": "jdbc",
-
-    "dataSourceName": "DEFAULT",
-
-    "schemaName": "DEFAULT",
-
-    "jdbcUri": "jdbc:h2:mem:DEFAULT.db;INIT=CREATE SCHEMA IF NOT EXISTS
-DEFAULT;DB_CLOSE_DELAY=30;",
-
-    "jdbcDriver":"org.h2.Driver",
-
-    "isDefaultEnvironment": true,
-
-    "jdbcFetchSize": 100
-
-  }
-
+  {
+    "storageFormat": "jdbc",
+    "dataSourceName": "DEFAULT",
+    "schemaName": "DEFAULT",
+    "jdbcUri": "jdbc:h2:mem:DEFAULT.db;INIT=CREATE SCHEMA IF NOT EXISTS DEFAULT;DB_CLOSE_DELAY=30;",
+    "jdbcDriver":"org.h2.Driver",
+    "isDefaultEnvironment": true,
+    "jdbcFetchSize": 100
+  }
 ]
+----
 
 Then you supply your SQL DDL file, for example:
 
+[source, sql]
+----
 SET SCHEMA DEFAULT;
 
 -- =========================================
-
 -- Cypher graph:
 
--- CREATE (a:A \{ name: 'A' })
-
--- CREATE (b1:B \{ type: 'B1' })
-
--- CREATE (b2:B \{ type: 'B2', size: 5 })
-
--- CREATE (combo1:A:B \{ name: 'COMBO1', type: 'AB1', size: 2 })
-
--- CREATE (combo2:A:B \{ name: 'COMBO2', type: 'AB2' })
-
--- CREATE (c:C \{ type: 'C' })
-
--- CREATE (bc:B:C \{ type: 'BC' })
-
--- CREATE (a)-[:R \{ since: 2004 }]->(b1)
-
--- CREATE (b1)-[:R \{ since: 2005, before: false }]->(combo1)
-
--- CREATE (combo1)-[:S \{ since: 2006 }]->(combo1)
-
+-- CREATE (a:A { name: 'A' })
+-- CREATE (b1:B { type: 'B1' })
+-- CREATE (b2:B { type: 'B2', size: 5 })
+-- CREATE (combo1:A:B { name: 'COMBO1', type: 'AB1', size: 2 })
+-- CREATE (combo2:A:B { name: 'COMBO2', type: 'AB2' })
+-- CREATE (c:C { type: 'C' })
+-- CREATE (bc:B:C { type: 'BC' })
+-- CREATE (a)-[:R { since: 2004 }]->(b1)
+-- CREATE (b1)-[:R { since: 2005, before: false }]->(combo1)
+-- CREATE (combo1)-[:S { since: 2006 }]->(combo1)
 -- CREATE (bc)-[:T]->(combo2)
-
 -- =========================================
 
 -- =========================================
-
 -- DROP
-
 -- =========================================
 
 -- Graph
-
 DROP GRAPH test;
-
 DROP GRAPH SCHEMA alphaBeta;
 
 -- Nodes
-
 DROP LABEL A;
-
 DROP LABEL B;
-
 DROP LABEL C;
 
 -- Rels
-
 DROP LABEL R;
-
 DROP LABEL S;
-
 DROP LABEL T;
 
 -- =========================================
-
 -- CREATE
-
 -- =========================================
 
 -- Node labels
-
 CREATE LABEL A PROPERTIES (name VARCHAR(8) NOT NULL)
-
 CREATE LABEL B PROPERTIES (type VARCHAR(8) NOT NULL, size INT)
-
 CREATE LABEL C PROPERTIES (type VARCHAR(8) NOT NULL)
 
 -- Relationship types
-
 CREATE LABEL R PROPERTIES (since INT NOT NULL, before BOOLEAN)
-
 CREATE LABEL S PROPERTIES (since INT NOT NULL)
-
 CREATE LABEL T
 
 -- Graph Schema
-
 CREATE GRAPH SCHEMA alphaBeta
+    -- Nodes
+  (A), (B), (C), (A,B), (B,C)
 
-  -- Nodes
+  -- Edges
+  [R], [S], [T]
 
-  (A), (B), (C), (A,B), (B,C)
-
-  -- Edges
-
-  [R], [S], [T]
-
-  -- Constraints
-
-  (A) - [R] -> (B)
-
-  (B) - [R] -> (A,B)
-
-  (A,B) - [S] -> (A,B)
-
-  (B,C) - [T] -> (A,B)
+  -- Constraints
+  (A) - [R] -> (B)
+  (B) - [R] -> (A,B)
+  (A,B) - [S] -> (A,B)
+  (B,C) - [T] -> (A,B)
 
 -- GRAPH
-
 CREATE GRAPH test WITH SCHEMA alphaBeta
 
 -- Nodes
-
-  NODES LABELLED (A) FROM alpha
-
-  NODES LABELLED (B) FROM beta
-
-  NODES LABELLED (C) FROM gamma
-
-  NODES LABELLED (A,B) FROM alphabeta
-
-  NODES LABELLED (B,C) FROM betagamma
+  NODES LABELLED (A) FROM alpha
+  NODES LABELLED (B) FROM beta
+  NODES LABELLED (C) FROM gamma
+  NODES LABELLED (A,B) FROM alphabeta
+  NODES LABELLED (B,C) FROM betagamma
 
 -- Edges
+  EDGES LABELLED R
+    -- (a)-[:R { since: 2004 }]->(b1)
+    FROM alpha
+      MAPPING (name)
+        FOR START NODE LABELLED (A)
+          MAPPING (r_link) ONTO beta(type)
+            FOR END NODE LABELLED (B)
 
-  EDGES LABELLED R
+  -- (b1)-[:R { since: 2005, before: false }]->(combo1)
+  FROM beta
+    MAPPING (type)
+      FOR START NODE LABELLED (B)
+        MAPPING (r_link) ONTO alphabeta(name)
+          FOR END NODE LABELLED (A,B)
 
-    -- (a)-[:R \{ since: 2004 }]->(b1)
+  EDGES LABELLED S
+    -- (combo1)-[:S { since: 2006 }]->(combo1)
+    FROM alphabeta
+      MAPPING (name)
+        FOR START NODE LABELLED (A,B)
+          MAPPING (s_link) ONTO alphabeta(name)
+            FOR END NODE LABELLED (A,B)
 
-    FROM alpha
+  EDGES LABELLED T
+    -- (bc)-[:T]->(combo2)
+    FROM betagamma
+      MAPPING (type)
+        FOR START NODE LABELLED (B,C)
+          MAPPING (t_link) ONTO alphabeta(name)
+            FOR END NODE LABELLED (A,B)
+----
 
-      MAPPING (name)
-
-        FOR START NODE LABELLED (A)
-
-          MAPPING (r_link) ONTO beta(type)
-
-            FOR END NODE LABELLED (B)
-
-    -- (b1)-[:R \{ since: 2005, before: false }]->(combo1)
-
-    FROM beta
-
-      MAPPING (type)
-
-        FOR START NODE LABELLED (B)
-
-          MAPPING (r_link) ONTO alphabeta(name)
-
-            FOR END NODE LABELLED (A,B)
-
-  EDGES LABELLED S
-
-    -- (combo1)-[:S \{ since: 2006 }]->(combo1)
-
-    FROM alphabeta
-
-      MAPPING (name)
-
-        FOR START NODE LABELLED (A,B)
-
-          MAPPING (s_link) ONTO alphabeta(name)
-
-            FOR END NODE LABELLED (A,B)
-
-  EDGES LABELLED T
-
-    -- (bc)-[:T]->(combo2)
-
-    FROM betagamma
-
-      MAPPING (type)
-
-        FOR START NODE LABELLED (B,C)
-
-          MAPPING (t_link) ONTO alphabeta(name)
-
-            FOR END NODE LABELLED (A,B)
 
 [[h.r8avqf756m3p]]
-Caching and Performance
------------------------
+== Caching and Performance
 
-An important thing to think about is what data will be cached at what
-level when running a spark application.  Because RDDs are typically
-recomputed every time there is an action, it is important to cache
-intermediate results, particularly if they are expensive to compute or
-frequently reused.  Many spark clusters encourage users to put large
-datasets on external network accessible storage such as S3, and in these
-cases caching becomes even more important to ensure that the data set
-isn’t pulled and re-pulled across the network every time it is used.
+An important thing to think about is what data will be cached at what level when running a spark application.
+Because RDDs are typically recomputed every time there is an action, it is important to cache intermediate results, particularly if they are expensive to compute or frequently reused.
+Many spark clusters encourage users to put large datasets on external network accessible storage such as S3, and in these cases caching becomes even more important to ensure that the data set isn't pulled and re-pulled across the network every time it is used.
 
-In terms of spark generalities, this article gives good general guidance
-on the non-Morpheus specific parts:
- https://www.google.com/url?q=https://unraveldata.com/to-cache-or-not-to-cache/&sa=D&ust=1528226567229000[To
-Cache or Not to Cache].
+In terms of spark generalities, this article gives good general guidance on the non-Morpheus specific parts: https://www.google.com/url?q=https://unraveldata.com/to-cache-or-not-to-cache/&sa=D&ust=1528226567229000[To Cache or Not to Cache].
+
 
 [[h.pwqpx5kmwf80]]
-Option 1 - Cache the backing table
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Option 1 - Cache the backing table
 
-Morpheus graphs are generally backed by the CAPSNodeTable and
-CAPSRelationshipTable classes.  Those classes in turn are abstractions
-on top of spark tables.  As such, the CAPS abstractions aren’t directly
-cacheable but you can cache the underlying table, like this:
+Morpheus graphs are generally backed by the CAPSNodeTable and CAPSRelationshipTable classes.
+Those classes in turn are abstractions on top of spark tables.
+As such, the CAPS abstractions aren't directly cacheable but you can cache the underlying table, like this:
 
+[source, scala]
+----
 val myTable = CAPSNodeTable(...)
-
 myTable.table.cache()
+----
 
-Alternatively, you can call .persist() on the underlying table and
-specify a storage level as you usually would in spark.
+Alternatively, you can call .persist() on the underlying table and specify a storage level as you usually would in spark.
+
 
 [[h.6wxspmd34p0m]]
-Option 2 - Cache the entire graph
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Option 2 - Cache the entire graph
 
+[source, scala]
+----
 import org.opencypher.spark.impl.CAPSConverters._
-
 val graph = session.readFrom(stuff, things).asCaps
-
 graph.cache()
+----
+
 
 [[h.130o8ph0f4fl]]
-Architecture & Usage
---------------------
+== Architecture & Usage
 
-This section is just a set of notes about observations on how to use
-Morpheus, where it fits in the world of data analysis, and what the
-near-term future might be like.  
+This section is just a set of notes about observations on how to use Morpheus, where it fits in the world of data analysis, and what the near-term future might be like.
 
-This is a set of educated guesses, not product direction or promises.
+*This is a set of educated guesses, not product direction or promises.*
 
-Morpheus is an environment for graph processing in spark.  It provides
-flexibility on where the data comes from and where it is going.
- Morpheus is tightly coupled to Spark which we can think of here as a
-cluster computing framework, and as a programming model reliant on the
-idea of map/reduce.
+Morpheus is an environment for graph processing in spark.
+It provides flexibility on where the data comes from and where it is going.
+Morpheus is tightly coupled to Spark which we can think of here as a cluster computing framework, and as a programming model reliant on the idea of map/reduce.
 
 This suggests several likely future directions:
 
-* We can imagine Morpheus extensions in the future to load data from new
-sources and save it to different targets.  These would all be relatively
-straightforward pluggable new features.
-* We can expect expansion of Cypher support to new functions, operators,
-etc -- which will naturally expand the kind of use cases that Morpheus
-will be good at.
-* Morpheus will tend to be better than the core neo4j database at
-problems which are easily parallelizable, because it will exploit the
-programming model well.  Data integration falls into that category
-because it can be thought of as applying operations to individual
-records, where records in tables are trivially partitionable,
-parallelizable.  
-* In the future, graph algorithms which are parallelizable will benefit
-heavily from that programming model.
-* Graph algorithms which are not parallelizable (e.g. algos that rely
-heavily on breadth first searches, or iterative approaches) will tend
-not to benefit from the spark programming model, and so probably won’t
-do as well with Morpheus.  The core database with heavy duty hardware
-would likely be preferred.
+* We can imagine Morpheus extensions in the future to load data from new sources and save it to different targets.
+  These would all be relatively straightforward pluggable new features.
+* We can expect expansion of Cypher support to new functions, operators, etc -- which will naturally expand the kind of use cases that Morpheus will be good at.
+* Morpheus will tend to be better than the core neo4j database at problems which are easily parallelizable, because it will exploit the programming model well.
+  Data integration falls into that category because it can be thought of as applying operations to individual records, where records in tables are trivially partitionable, parallelizable.
+  In the future, graph algorithms which are parallelizable will benefit heavily from that programming model.
+* Graph algorithms which are not parallelizable (e.g. algos that rely heavily on breadth first searches, or iterative approaches) will tend not to benefit from the spark programming model, and so probably won't do as well with Morpheus.
+  The core database with heavy duty hardware would likely be preferred.
+
 
 [[h.u4rrjnfmvnfu]]
-Distributed vs. Federated Query Processing
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Distributed vs. Federated Query Processing
 
-In choosing data sources and sinks, where the data resides is pretty
-important.  
+In choosing data sources and sinks, where the data resides is pretty important.
 
-Federating Queries
+*Federating Queries*
 
-If for example you use an SQL data source, some of the queries necessary
-to run in Spark will be pushed down to the original source.  Those
-queries will be against the tables for labels views that were set up.  
-You can imagine a situation where you live integrate several different
-databases.  In this case, Morpheus is acting as a federated query
-processor.  Plenty of work is happening within Spark, but the original
-data (and much of the query operators being executed) are being
-federated out to the stores.
+If for example you use an SQL data source, some of the queries necessary to run in Spark will be pushed down to the original source.
+Those queries will be against the tables for labels views that were set up.
+You can imagine a situation where you live integrate several different databases.
+In this case, Morpheus is acting as a federated query processor.
+Plenty of work is happening within Spark, but the original data (and much of the query operators being executed) are being federated out to the stores.
 
-Distributing Queries
+*Distributing Queries*
 
-If all of your data resides in a Hadoop setup, this is more distributed
-query processing, in that your workload is distributed out across all of
-the nodes of the hadoop cluster.
+If all of your data resides in a Hadoop setup, this is more distributed query processing, in that your workload is distributed out across all of the nodes of the hadoop cluster.
 
-An interesting question to confront will be whether you want to do
-federated query processing, or whether it would be better for example to
-do a once-a-month hive extract of a running production system, and then
-treat the production system’s data as “local-to-hadoop” in Hive.
- Various trade-offs will include network latency, operational impact,
-and data freshness.
+An interesting question to confront will be whether you want to do federated query processing, or whether it would be better for example to do a once-a-month hive extract of a running production system, and then treat the production system's data as "local-to-hadoop" in Hive.
+Various trade-offs will include network latency, operational impact, and data freshness.
+
 
 [[h.j3yjfjbacw43]]
-Spark Independence
-~~~~~~~~~~~~~~~~~~
+=== Spark Independence
 
-Spark does not require Hadoop under the covers, and in the future, it is
-likely to crop up in other environments.  Already, Azure’s partnership
-with Databricks has offered “hadoopless” spark on Azure.  And other
-aspects of the Hadoop ecosystem are being replaced elsewhere.  For
-example using Google Cloud Dataproc (hosted Spark) you can treat
-google’s object store as HDFS compatible in spark jobs.  Similar
-possibilities exist with Amazon S3.
+Spark does not require Hadoop under the covers, and in the future, it is likely to crop up in other environments.
+Already, Azure's partnership with Databricks has offered "hadoopless" spark on Azure.
+And other aspects of the Hadoop ecosystem are being replaced elsewhere.
+For example using Google Cloud Dataproc (hosted Spark) you can treat google's object store as HDFS compatible in spark jobs.
+Similar possibilities exist with Amazon S3.
+
 
 [[h.pj14svxc4ff8]]
-Resources & Links
------------------
+== Resources & Links
 
-Morpheus Github Wiki
+*Morpheus Github Wiki*
 
 https://www.google.com/url?q=https://github.com/neo-technology/morpheus/wiki&sa=D&ust=1528226567234000[https://github.com/neo-technology/morpheus/wiki]
 
-CAPS Example programs
+*CAPS Example programs*
 
-https://www.google.com/url?q=https://github.com/opencypher/caps-examples/tree/caps-tutorial&sa=D&ust=1528226567234000[https://github.com/opencypher/caps-examples/tree/caps-tutorial] 
+https://www.google.com/url?q=https://github.com/opencypher/caps-examples/tree/caps-tutorial&sa=D&ust=1528226567234000[https://github.com/opencypher/caps-examples/tree/caps-tutorial]
 
-Morpheus Examples
+*Morpheus Examples*
 
 https://www.google.com/url?q=https://github.com/neo-technology/morpheus-examples&sa=D&ust=1528226567234000[https://github.com/neo-technology/morpheus-examples]
 
-Morpheus Early Adoper Program
+*Morpheus Early Adoper Program*
 
 https://www.google.com/url?q=https://docs.google.com/document/d/1fcKAdGVcqMDhG0pjpPqIpok3WDH7RXiYIDe0qb2j0A0/edit?usp%3Dsharing&sa=D&ust=1528226567235000[https://docs.google.com/document/d/1fcKAdGVcqMDhG0pjpPqIpok3WDH7RXiYIDe0qb2j0A0/edit?usp=sharing]
