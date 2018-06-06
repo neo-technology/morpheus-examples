@@ -4,7 +4,7 @@
 
   <groupId>org.opencypher</groupId>
   <artifactId>morpheus-examples</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0-EAP0</version>
 
   <name>Morpheus Examples</name>
 
@@ -12,7 +12,7 @@
 
   <repositories>
     <repository>
-      <id>morpheus-releases</id>
+      <id>morpheus-release</id>
       <name>Morpheus private release repository</name>
       <url>https://neo.jfrog.io/neo/morpheus-release</url>
     </repository>
