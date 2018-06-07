@@ -8,8 +8,8 @@ class OrcReadExampleTest extends ExampleTest {
       """|+----------------------------------------------------------------------------------+
          || n                                  | r        | m                                |
          |+----------------------------------------------------------------------------------+
-         || (:Person {age: 23, name: 'Bob'})   | [:KNOWS] | (:Person {age: 84, name: 'Eve'}) |
          || (:Person {age: 42, name: 'Alice'}) | [:KNOWS] | (:Person {age: 23, name: 'Bob'}) |
+         || (:Person {age: 23, name: 'Bob'})   | [:KNOWS] | (:Person {age: 84, name: 'Eve'}) |
          |+----------------------------------------------------------------------------------+
          |(2 rows)
          |""".stripMargin)

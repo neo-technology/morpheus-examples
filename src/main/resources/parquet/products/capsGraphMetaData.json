@@ -1,6 +1,3 @@
 {
-  "tableStorageFormat" : "parquet",
-  "tags" : [
-    0
-  ]
+    "tableStorageFormat": "parquet"
 }
