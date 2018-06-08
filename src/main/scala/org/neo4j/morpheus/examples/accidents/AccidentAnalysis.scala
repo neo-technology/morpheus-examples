@@ -127,7 +127,6 @@ object AccidentAnalysis extends App {
       """.stripMargin
     ).getRecords.show
 
-    /*
     println("Where are these happening")
     session.catalog.graph("accident").cypher(
       """
@@ -138,7 +137,6 @@ object AccidentAnalysis extends App {
         |LIMIT 20
       """.stripMargin
     ).getRecords.show
-    */
 
     /*
         Currently this fails due to this bug:
@@ -152,7 +150,7 @@ object AccidentAnalysis extends App {
     }
     */
 
-    /* Works locally, fails on Cloudera cluster
+    /* Works locally, fails on Cloudera cluster */
     val megaQuery =
       """
         |FROM GRAPH accident
@@ -223,6 +221,5 @@ object AccidentAnalysis extends App {
         |LIMIT 20
       """.stripMargin
     ).getRecords.show
-    */
   }
 }

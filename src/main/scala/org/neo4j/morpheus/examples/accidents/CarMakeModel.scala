@@ -39,11 +39,15 @@ class CarMakeModel(csvDir:String)(implicit spark:SparkSession, session: CAPSSess
   df.persist(StorageLevel.MEMORY_ONLY)
 
   def asGraph(label:String = "MakeModel") : PropertyGraph = {
+
     val mapping = NodeMapping.withSourceIdKey(reservedId)
       .withImpliedLabel(label)
       .withPropertyKeys((Seq("Trade_Name") ++ fields):_*)
 
-    val g = session.readFrom(CAPSNodeTable(mapping, df)).asCaps
+
+    CAPSNodeTable.fromMapping(mapping, df)
+
+    val g = session.readFrom(CAPSNodeTable.fromMapping(mapping, df)).asCaps
     g.cache()
     g
   }

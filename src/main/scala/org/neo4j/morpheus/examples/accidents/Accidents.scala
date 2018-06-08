@@ -41,7 +41,7 @@ class Accidents(csvDir:String)(implicit spark:SparkSession, session: CAPSSession
 
     accidentTable.persist(StorageLevel.MEMORY_AND_DISK)
 
-    val accident = CAPSNodeTable(
+    val accident = CAPSNodeTable.fromMapping(
       NodeMapping.withSourceIdKey("__id")
         .withImpliedLabel(label)
         .withPropertyKeys(fields:_*),

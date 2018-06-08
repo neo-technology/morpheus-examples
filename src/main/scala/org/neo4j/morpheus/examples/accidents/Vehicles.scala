@@ -38,7 +38,7 @@ class Vehicles(csvDir:String)(implicit spark:SparkSession, session: CAPSSession)
     .withImpliedLabel("Vehicle")
     .withPropertyKeys(fields:_*)
 
-    val nodeTable = CAPSNodeTable(mapping, df)
+    val nodeTable = CAPSNodeTable.fromMapping(mapping, df)
     nodeTable.table.cache()
 
     val g = session.readFrom(nodeTable).asCaps

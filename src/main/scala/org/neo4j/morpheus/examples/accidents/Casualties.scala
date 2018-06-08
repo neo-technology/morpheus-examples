@@ -35,7 +35,7 @@ class Casualties(csvDir:String)(implicit spark:SparkSession, session: CAPSSessio
       .withImpliedLabel(label)
       .withPropertyKeys(fields:_*)
 
-    val g = session.readFrom(CAPSNodeTable(mapping, df)).asCaps
+    val g = session.readFrom(CAPSNodeTable.fromMapping(mapping, df)).asCaps
     g.cache()
     g
   }

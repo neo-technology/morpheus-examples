@@ -64,8 +64,8 @@ object Refactor {
       .withRelType(node.relType)
 
     GraphPart(
-      CAPSNodeTable(nodeMapping, refactoredNodeDF),
-      Some(CAPSRelationshipTable(relMapping, refactoredRelsDF))
+      CAPSNodeTable.fromMapping(nodeMapping, refactoredNodeDF),
+      Some(CAPSRelationshipTable.fromMapping(relMapping, refactoredRelsDF))
     )
   }
 
