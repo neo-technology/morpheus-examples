@@ -211,10 +211,10 @@ CREATE GRAPH Northwind WITH SCHEMA NORTHWIND_NAIVE
 
     -- (CustomerDemographic)-[HAS_CUSTOMER]->(Customer)
     FROM CustomerCustomerDemo
-      MAPPING (CustomerID) ONTO customer_MT
-        FOR START NODE LABELLED (Customer)
       MAPPING (CustomerTypeID) ONTO customer_demographics_MT
-        FOR END NODE LABELLED (CustomerDemographic)
+        FOR START NODE LABELLED (CustomerDemographic)
+      MAPPING (CustomerID) ONTO customer_MT
+        FOR END NODE LABELLED (Customer)
 
     -- (Order)-[HAS_SHIPPER]->(Shipper)
     EDGES LABELLED HAS_SHIPPER
@@ -235,8 +235,8 @@ CREATE GRAPH Northwind WITH SCHEMA NORTHWIND_NAIVE
     -- (Customer)-[HAS_CUSTOMER_DEMOGRAPHIC]->(CustomerDemographic)
     EDGES LABELLED HAS_CUSTOMER_DEMOGRAPHIC
     FROM CustomerCustomerDemo
-      MAPPING (CustomerTypeID) ONTO customer_demographics_MT
-        FOR START NODE LABELLED (CustomerDemographic)
       MAPPING (CustomerID) ONTO customer_MT
-        FOR END NODE LABELLED (Customer)
+        FOR START NODE LABELLED (Customer)
+      MAPPING (CustomerTypeID) ONTO customer_demographics_MT
+        FOR END NODE LABELLED (CustomerDemographic)
 

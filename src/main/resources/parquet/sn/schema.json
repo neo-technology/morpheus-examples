@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "labelPropertyMap": [
+        {
+            "labels": [
+                "Person"
+            ],
+            "properties": {
+                "age": "INTEGER",
+                "name": "STRING"
+            }
+        }
+    ],
+    "relTypePropertyMap": [
+        {
+            "relType": "KNOWS",
+            "properties": {
+                
+            }
+        }
+    ]
+}

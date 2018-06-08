@@ -4,7 +4,7 @@
 
   <groupId>org.opencypher</groupId>
   <artifactId>morpheus-examples</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT%</version>
 
   <name>Morpheus Examples</name>
 
@@ -62,13 +62,7 @@
     <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>morpheus-bundle</artifactId>
-      <version>${dep.morpheus.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>${dep.h2.version}</version>
+      <version>${project.version}</version>
     </dependency>
 
     <dependency>
