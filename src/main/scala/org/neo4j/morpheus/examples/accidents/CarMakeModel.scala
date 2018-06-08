@@ -5,8 +5,9 @@ import org.opencypher.okapi.api.graph.PropertyGraph
 import org.opencypher.spark.api.io.CAPSNodeTable
 import org.opencypher.okapi.api.io.conversion.NodeMapping
 import org.opencypher.spark.api.CAPSSession
-
 import org.apache.spark.sql.functions.{concat, lit}
+import org.apache.spark.storage.StorageLevel
+import org.opencypher.spark.impl.CAPSConverters._
 
 import scala.reflect.io.File
 
@@ -35,11 +36,15 @@ class CarMakeModel(csvDir:String)(implicit spark:SparkSession, session: CAPSSess
     .withColumn("Trade_Name", concat(dfTmp.col("make"), lit(" "), dfTmp.col("model")))
     .withColumn(reservedId, curId)
 
+  df.persist(StorageLevel.MEMORY_ONLY)
+
   def asGraph(label:String = "MakeModel") : PropertyGraph = {
     val mapping = NodeMapping.withSourceIdKey(reservedId)
       .withImpliedLabel(label)
       .withPropertyKeys((Seq("Trade_Name") ++ fields):_*)
 
-    session.readFrom(CAPSNodeTable(mapping, df))
+    val g = session.readFrom(CAPSNodeTable(mapping, df)).asCaps
+    g.cache()
+    g
   }
 }

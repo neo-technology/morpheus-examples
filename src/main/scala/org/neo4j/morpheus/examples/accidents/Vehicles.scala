@@ -1,10 +1,13 @@
 package org.neo4j.morpheus.examples.accidents
 
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.storage.StorageLevel
 import org.opencypher.okapi.api.graph.PropertyGraph
 import org.opencypher.spark.api.io.CAPSNodeTable
 import org.opencypher.okapi.api.io.conversion.NodeMapping
 import org.opencypher.spark.api.CAPSSession
+
+import org.opencypher.spark.impl.CAPSConverters._
 
 import scala.reflect.io.File
 
@@ -28,11 +31,18 @@ class Vehicles(csvDir:String)(implicit spark:SparkSession, session: CAPSSession)
     .select(fields.head, fields.tail:_*)
     .withColumn(reservedId, curId)
 
+  df.persist(StorageLevel.MEMORY_AND_DISK)
+
   def asGraph(label:String = "Vehicle") : PropertyGraph = {
     val mapping = NodeMapping.withSourceIdKey(reservedId)
     .withImpliedLabel("Vehicle")
     .withPropertyKeys(fields:_*)
 
-    session.readFrom(CAPSNodeTable(mapping, df))
+    val nodeTable = CAPSNodeTable(mapping, df)
+    nodeTable.table.cache()
+
+    val g = session.readFrom(nodeTable).asCaps
+    g.cache()
+    g
   }
 }

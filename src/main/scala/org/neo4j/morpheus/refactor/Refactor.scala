@@ -1,6 +1,7 @@
 package org.neo4j.morpheus.refactor
 
 import org.apache.spark.sql.{Column, DataFrame}
+import org.apache.spark.storage.StorageLevel
 import org.neo4j.cypher.spark.udfs.CapUdfs.caps_monotonically_increasing_id
 import org.opencypher.okapi.api.io.conversion.{NodeMapping, RelationshipMapping}
 import org.opencypher.spark.api.io.{CAPSNodeTable, CAPSRelationshipTable}
@@ -38,6 +39,9 @@ object Refactor {
       .withColumn(reservedIdField, curId)
       .select(reservedIdField, "from", "to")
       .capsWorkaround()
+
+    refactoredNodeDF.persist(StorageLevel.MEMORY_ONLY)
+    refactoredRelsDF.persist(StorageLevel.MEMORY_ONLY)
 
     // println("NODES AND SCHEMA")
     // refactoredNodeDF.show(5)

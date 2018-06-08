@@ -1,11 +1,16 @@
 package org.neo4j.morpheus.examples.accidents
 
+import java.net.URI
 import java.util.UUID
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.storage.StorageLevel
+import org.neo4j.cypher.spark.EnterpriseNeo4jGraphSource
 import org.neo4j.morpheus.refactor.CodeTable
+import org.opencypher.okapi.api.graph.{GraphName, Namespace}
 import org.opencypher.spark.api.CAPSSession
+import org.opencypher.spark.impl.CAPSConverters._
 
 import scala.reflect.io.File
 
@@ -57,8 +62,12 @@ object AccidentAnalysis extends App {
         val csvFile = entry._1
         val label = entry._2
 
-        val graph = new CodeTable(csvDir + File.separator + csvFile, "code", "label")
-          .asGraph(label)
+        val codeTbl = new CodeTable(csvDir + File.separator + csvFile, "code", "label")
+        codeTbl.df.persist(StorageLevel.MEMORY_ONLY)
+
+        val graph = codeTbl.asGraph(label).asCaps
+        graph.cache()
+
         session.catalog.store(label, graph)
       })
 
@@ -90,9 +99,7 @@ object AccidentAnalysis extends App {
       """.stripMargin
     )
 
-    // Just a test query to prove that aggregate casualty numbers match
-    // what we joined with cypher, proving the join worked correctly.
-    // a.Number_of_Casualties should match Matches.
+    println("Prove that aggregate casualty numbers match the cypher join")
     queryHelper(
       """
         |FROM GRAPH accident
@@ -109,6 +116,43 @@ object AccidentAnalysis extends App {
       """.stripMargin
     )
 
+    println("What's the average severity for each day?")
+    session.catalog.graph("accident").cypher(
+      """
+        |MATCH (a:Accident)-[r:SEVERITY]->(s:Severity),
+        |(a)-[:OCCURRED]->(d:DayOfWeek)
+        |RETURN distinct(d.Day_Of_Week) as DayOfWeek,
+        |  avg(toFloat(s.Accident_Severity)) AS avgSeverity
+        |ORDER BY DayOfWeek ASC
+      """.stripMargin
+    ).getRecords.show
+
+    /*
+    println("Where are these happening")
+    session.catalog.graph("accident").cypher(
+      """
+        |MATCH (a:Accident)-[:LOCATION]->(r:Road)
+        |WHERE r.Road_Number IS NOT NULL
+        |RETURN distinct(r.Road_Number) as Road_Number, r.Road_Type, r.Road_Class, count(a) as x
+        |ORDER BY Road_Number desc
+        |LIMIT 20
+      """.stripMargin
+    ).getRecords.show
+    */
+
+    /*
+        Currently this fails due to this bug:
+        https://trello.com/c/YtGiWfeQ/237-enterpriseneo4jpropertygraphsource-does-not-properly-escape-property-names-when-writing-to-neo4j
+
+    val writeToNeo4j = true
+    if (args.length >= 2 && writeToNeo4j) {
+      println("Storing accident graph")
+      val neo4j = EnterpriseNeo4jGraphSource(new URI(args(1)))
+      neo4j.store(GraphName("accident"), session.catalog.graph("accident"))
+    }
+    */
+
+    /* Works locally, fails on Cloudera cluster
     val megaQuery =
       """
         |FROM GRAPH accident
@@ -159,6 +203,7 @@ object AccidentAnalysis extends App {
         |RETURN GRAPH
       """.stripMargin
 
+    session.cypher(megaQuery).getRecords
     println("Integrating the graphs with this big query...")
     session.catalog.store("integratedGraph", session.cypher(megaQuery).getGraph)
 
@@ -178,27 +223,6 @@ object AccidentAnalysis extends App {
         |LIMIT 20
       """.stripMargin
     ).getRecords.show
-
-    println("What's the average severity for each day?")
-    session.catalog.graph("accident").cypher(
-      """
-        |MATCH (a:Accident)-[r:SEVERITY]->(s:Severity),
-        |(a)-[:OCCURRED]->(d:DayOfWeek)
-        |RETURN distinct(d.Day_Of_Week) as DayOfWeek,
-        |  avg(toFloat(s.Accident_Severity)) AS avgSeverity
-        |ORDER BY DayOfWeek ASC
-      """.stripMargin
-    ).getRecords.show
-
-    println("Where are these happening")
-    session.catalog.graph("accident").cypher(
-      """
-        |MATCH (a:Accident)-[:LOCATION]->(r:Road)
-        |WHERE r.Road_Number IS NOT NULL
-        |RETURN distinct(r.Road_Number) as Road_Number, r.Road_Type, r.Road_Class, count(a) as x
-        |ORDER BY Road_Number desc
-        |LIMIT 20
-      """.stripMargin
-    ).getRecords.show
+    */
   }
 }

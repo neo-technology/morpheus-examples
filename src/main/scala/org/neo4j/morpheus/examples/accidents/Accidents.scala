@@ -2,11 +2,13 @@ package org.neo4j.morpheus.examples.accidents
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions.lit
+import org.apache.spark.storage.StorageLevel
 import org.neo4j.morpheus.refactor.{NestedNode, Refactor}
 import org.opencypher.okapi.api.graph.PropertyGraph
-import org.opencypher.spark.api.io.{CAPSEntityTable, CAPSNodeTable, CAPSRelationshipTable}
+import org.opencypher.spark.api.io.{CAPSEntityTable, CAPSNodeTable, CAPSRelationshipTable, EntityTable}
 import org.opencypher.okapi.api.io.conversion.NodeMapping
 import org.opencypher.spark.api.CAPSSession
+import org.opencypher.spark.impl.CAPSConverters._
 
 import scala.reflect.io.File
 
@@ -37,11 +39,15 @@ class Accidents(csvDir:String)(implicit spark:SparkSession, session: CAPSSession
     val accidentTable = df
       .select(sortedCols.head, sortedCols.tail: _*)
 
+    accidentTable.persist(StorageLevel.MEMORY_AND_DISK)
+
     val accident = CAPSNodeTable(
       NodeMapping.withSourceIdKey("__id")
         .withImpliedLabel(label)
         .withPropertyKeys(fields:_*),
       accidentTable.select("__id", fields:_*))
+
+    accident.table.cache()
 
     // Road designation is a more complex structure in here we need to pre-process before
     // factoring out.
@@ -54,6 +60,9 @@ class Accidents(csvDir:String)(implicit spark:SparkSession, session: CAPSSession
         // Dataset doesn't specify second road type, only first.
         .withColumn("Road_Type", lit("Unknown")))
       .distinct()
+
+    roads.persist(StorageLevel.MEMORY_AND_DISK)
+
     val extraRoadNodeProps = Seq("Road_Type", "Road_Class")
 
     case class RefactorPair(df: DataFrame, nn: NestedNode)
@@ -80,11 +89,21 @@ class Accidents(csvDir:String)(implicit spark:SparkSession, session: CAPSSession
     val parts = thingsToRefactor
       .map(rfPair => Refactor.refactor(rfPair.df, rfPair.nn))
 
-    val ns: Seq[CAPSNodeTable] = parts.map(p => p.nodes)
-    val es: Seq[CAPSRelationshipTable] = parts.map(_.edges).filter(_.isDefined).map(_.get)
+    val ns: Seq[CAPSNodeTable] = parts.map(p => {
+      p.nodes.table.cache()
+      p.nodes
+    })
+    val es: Seq[CAPSRelationshipTable] = parts.map(_.edges).filter(_.isDefined).map(someRels => {
+      val relTbl = someRels.get
+      relTbl.table.cache()
+      relTbl
+    })
+
     val entityTables: Seq[CAPSEntityTable] = ns ++ es
 
     println("Assembling graph")
-    session.readFrom(accident, entityTables:_*)
+    val g = session.readFrom(accident, entityTables:_*).asCaps
+    g.cache()
+    g
   }
 }
