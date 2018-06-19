@@ -11,10 +11,15 @@
   <description>Example project for working with graphs in Morpheus for Apache Spark</description>
 
   <repositories>
+    <!--<repository>-->
+      <!--<id>morpheus-release</id>-->
+      <!--<name>Morpheus private release repository</name>-->
+      <!--<url>https://neo.jfrog.io/neo/morpheus-release</url>-->
+    <!--</repository>-->
     <repository>
-      <id>morpheus-release</id>
+      <id>morpheus-internal</id>
       <name>Morpheus private release repository</name>
-      <url>https://neo.jfrog.io/neo/morpheus-release</url>
+      <url>https://neo.jfrog.io/neo/opencypher</url>
     </repository>
   </repositories>
 
@@ -60,7 +65,7 @@
     </dependency>
 
     <dependency>
-      <groupId>org.neo4j</groupId>
+      <groupId>com.neo4j</groupId>
       <artifactId>morpheus-bundle</artifactId>
       <version>${project.version}</version>
     </dependency>

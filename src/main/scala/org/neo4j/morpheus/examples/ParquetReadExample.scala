@@ -1,6 +1,6 @@
 package org.neo4j.morpheus.examples
 
-import org.neo4j.morpheus.api.MorpheusGraphSource
+import com.neo4j.morpheus.api.GraphSources
 import org.neo4j.morpheus.utils.ConsoleApp
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
@@ -11,7 +11,8 @@ object ParquetReadExample extends ConsoleApp {
   implicit val session: CAPSSession = CAPSSession.local()
 
   // Register the Parquet data source within the CAPS session and point it to the local filesystem, i.e. <project-dir>/target/classes/parquet.
-  session.registerSource(Namespace("myParquet"), MorpheusGraphSource.parquet(getClass.getResource("/parquet").getPath))
+  val parquetGraphSource = GraphSources.fs(getClass.getResource("/parquet").getPath).parquet()
+  session.registerSource(Namespace("myParquet"), parquetGraphSource)
 
   // Query the 'sn' graph stored within the Parquet graph source
   val res = session.cypher(

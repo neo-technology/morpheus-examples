@@ -1,7 +1,7 @@
 package org.neo4j.morpheus.examples
 
-import org.neo4j.cypher.spark.EnterpriseNeo4jGraphSource
-import org.neo4j.morpheus.api.MorpheusGraphSource
+import com.neo4j.cypher.spark.Neo4jNamedGraphSource
+import com.neo4j.morpheus.api.GraphSources
 import org.neo4j.morpheus.utils.Neo4jHelpers._
 import org.neo4j.morpheus.utils.{ConsoleApp, Neo4jHelpers}
 import org.opencypher.okapi.api.graph.Namespace
@@ -16,13 +16,14 @@ object Neo4jAndParquetExample extends ConsoleApp {
   val neo4j = Neo4jHelpers.startNeo4j(personNetwork)
 
   // Register Graph Data Sources (GDS)
-  session.registerSource(Namespace("neo4j"), EnterpriseNeo4jGraphSource(neo4j.uri))
+  session.registerSource(Namespace("neo4j"), Neo4jNamedGraphSource(neo4j.uri))
 
   // Access the graph via its qualified graph name
   val socialNetwork = session.catalog.graph("neo4j.graph")
 
   // Register a File-based data source in the Cypher session
-  session.registerSource(Namespace("parquet"), MorpheusGraphSource.parquet(getClass.getResource("/parquet").getFile))
+  val parquetGraphSource = GraphSources.fs(getClass.getResource("/parquet").getFile).parquet()
+  session.registerSource(Namespace("parquet"), parquetGraphSource)
 
   // Access the graph via its qualified graph name
   val purchaseNetwork = session.catalog.graph("parquet.products")

@@ -3,7 +3,7 @@ package org.neo4j.morpheus.examples
 import java.nio.file.{Path, Paths}
 
 import org.neo4j.morpheus.utils.{ConsoleApp, NorthwindDB}
-import org.neo4j.sql.SqlGraphSource
+import com.neo4j.sql.SqlGraphSource
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
 

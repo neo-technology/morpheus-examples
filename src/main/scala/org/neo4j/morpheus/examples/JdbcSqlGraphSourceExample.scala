@@ -4,7 +4,7 @@ import java.nio.file.Paths
 
 import org.apache.spark.sql.SparkSession
 import org.neo4j.morpheus.utils.{CensusDB, ConsoleApp}
-import org.neo4j.sql.SqlGraphSource
+import com.neo4j.sql.SqlGraphSource
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
 
