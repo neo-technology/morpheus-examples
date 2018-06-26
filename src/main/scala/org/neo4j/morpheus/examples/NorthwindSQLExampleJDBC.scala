@@ -2,8 +2,8 @@ package org.neo4j.morpheus.examples
 
 import java.nio.file.{Path, Paths}
 
+import com.neo4j.morpheus.api.GraphSources
 import org.neo4j.morpheus.utils.{ConsoleApp, NorthwindDB}
-import com.neo4j.sql.SqlGraphSource
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
 
@@ -20,8 +20,12 @@ object NorthwindSQLExampleJDBC extends ConsoleApp {
   // the latter contains the graph definitions and mappings from SQL tables that fill the graph with data
   private val rootDir: Path = Paths.get(getClass.getResource("/sql/pgds").toURI)
 
+  private val sqlGraphSource = GraphSources
+      .sql(rootDir, "northwind.ddl.sql")
+      .withDataSourcesFile("h2-source.json")
+
   // register the SQL graph source with the session
-  session.registerSource(Namespace("sql"), SqlGraphSource(rootDir, "northwind.ddl.sql", "h2-source.json"))
+  session.registerSource(Namespace("sql"), sqlGraphSource)
 
   // print the number of nodes in the graph
   session.cypher(

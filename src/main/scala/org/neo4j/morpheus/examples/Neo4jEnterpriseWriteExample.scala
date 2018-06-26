@@ -1,6 +1,6 @@
 package org.neo4j.morpheus.examples
 
-import com.neo4j.cypher.spark.Neo4jNamedGraphSource
+import com.neo4j.morpheus.api.GraphSources
 import org.neo4j.morpheus.utils.Neo4jHelpers._
 import org.neo4j.morpheus.utils.{ConsoleApp, Neo4jHelpers}
 import org.opencypher.okapi.api.graph.Namespace
@@ -15,7 +15,7 @@ object Neo4jEnterpriseWriteExample extends ConsoleApp {
   val neo4j = Neo4jHelpers.startNeo4j(personNetwork)
 
   // Register Graph Data Sources (GDS)
-  session.registerSource(Namespace("socialNetwork"), Neo4jNamedGraphSource(neo4j.uri))
+  session.registerSource(Namespace("socialNetwork"), GraphSources.cypher.namedGraph(neo4j.dataSourceConfig))
 
   // Access the graph via its qualified graph name
   val socialNetwork = session.catalog.graph("socialNetwork.graph")

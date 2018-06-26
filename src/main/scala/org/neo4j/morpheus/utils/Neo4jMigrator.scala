@@ -13,7 +13,10 @@ object Neo4jMigrationWriter extends App {
   implicit val session: CAPSSession = CAPSSession.local()
 
   session.registerSource(Namespace("file"), GraphSources.fs(getClass.getResource("/parquet/").getPath).parquet())
-  session.registerSource(Namespace("neo4j"), new Neo4jNamedGraphSource(Neo4jConfig(URI.create("bolt://localhost:7687"), "neo4j", Some("passwd"))))
+  session.registerSource(Namespace("neo4j"), GraphSources.cypher.namedGraph(
+    Neo4jConfig(URI.create("bolt://localhost:7687"),
+      "neo4j",
+      Some("passwd"))))
 
   val FILE_ROOT = ""
 
@@ -32,7 +35,10 @@ object Neo4jMigrationReader extends App {
   implicit val session: CAPSSession = CAPSSession.local()
 
   session.registerSource(Namespace("file"), GraphSources.fs("/tmp/graphs/orc").orc())
-  session.registerSource(Namespace("neo4j"), new Neo4jNamedGraphSource(Neo4jConfig(URI.create("bolt://localhost:7687"), "neo4j", Some("passwd"))))
+  session.registerSource(Namespace("neo4j"), GraphSources.cypher.namedGraph(
+    Neo4jConfig(URI.create("bolt://localhost:7687"),
+      "neo4j",
+      Some("passwd"))))
 
   val FILE_ROOT = ""
 

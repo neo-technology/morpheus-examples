@@ -2,6 +2,7 @@ package org.neo4j.morpheus.examples
 
 import java.nio.file.Paths
 
+import com.neo4j.morpheus.api.GraphSources
 import org.apache.spark.sql.SparkSession
 import org.neo4j.morpheus.utils.{CensusDB, ConsoleApp}
 import com.neo4j.sql.SqlGraphSource
@@ -22,10 +23,12 @@ object JdbcSqlGraphSourceExample extends ConsoleApp {
 
   // Register a SQL source (for JDBC) in the Cypher session
   val graphName = "Census_1901"
-  val sqlGraphSource = SqlGraphSource(
-    rootDirectoryPath = Paths.get(getClass.getResource("/ddl").toURI),
-    graphSchemaDDLFile = "censusGraph.sql",
-    graphSQLDataSourcesFile = "jdbc-data-sources.json")
+  val sqlGraphSource = GraphSources
+    .sql(
+      Paths.get(getClass.getResource("/ddl").toURI),
+      "censusGraph.sql"
+    ).withDataSourcesFile("jdbc-data-sources.json")
+
   session.registerSource(Namespace("sql"), sqlGraphSource)
 
   // Access the graph via its qualified graph name

@@ -7,7 +7,6 @@ import com.neo4j.morpheus.api.GraphSources
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.internal.StaticSQLConf.CATALOG_IMPLEMENTATION
 import org.neo4j.morpheus.utils.{CensusDB, ConsoleApp}
-import com.neo4j.sql.SqlGraphSource
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
 
@@ -26,8 +25,8 @@ object HiveSqlGraphSourceExample extends ConsoleApp {
 
   val sqlGraphSource = GraphSources
     .sql(
-      rootDirectoryPath = Paths.get(getClass.getResource("/ddl").toURI),
-      graphSchemaDDLFile = "censusGraph.sql"
+      Paths.get(getClass.getResource("/ddl").toURI),
+      "censusGraph.sql"
     ).withDataSourcesFile("hive-data-sources.json")
 
   session.registerSource(Namespace("sql"), sqlGraphSource)
