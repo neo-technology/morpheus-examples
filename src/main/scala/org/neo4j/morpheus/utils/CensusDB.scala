@@ -3,8 +3,8 @@ package org.neo4j.morpheus.utils
 import java.sql.DriverManager
 
 import org.apache.spark.sql.SparkSession
-import org.neo4j.sql.SparkOptionKeys.{DB_TABLE, DRIVER, URL}
-import org.neo4j.hadoop.{JdbcFormat, ParquetFormat, StorageFormat}
+import com.neo4j.sql.SparkOptionKeys.{DB_TABLE, DRIVER, URL}
+import com.neo4j.hadoop.{JdbcFormat, ParquetFormat, StorageFormat}
 
 object CensusDB {
 
