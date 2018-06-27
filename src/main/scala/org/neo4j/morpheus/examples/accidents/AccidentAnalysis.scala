@@ -82,6 +82,19 @@ object AccidentAnalysis extends App {
       session.cypher(q).getRecords.show
     }
 
+    /*
+    println("Ambiguous query")
+    queryHelper(
+      """
+        |EXPLAIN FROM GRAPH accident
+        |MATCH (a)-[r]->(m1), (a)-[r2]->(m2)
+        |WHERE a.Accident_Index = "2016400098380" AND m1 <> m2
+        |RETURN labels(a), type(r), m1, type(r2), m2
+        |LIMIT 10
+      """.stripMargin
+    )
+    */
+
     println("Multi-graph queries, Yay!")
 
     queryHelper(
@@ -141,7 +154,8 @@ object AccidentAnalysis extends App {
     /*
         Currently this fails due to this bug:
         https://trello.com/c/YtGiWfeQ/237-enterpriseneo4jpropertygraphsource-does-not-properly-escape-property-names-when-writing-to-neo4j
-
+     */
+    /*
     val writeToNeo4j = true
     if (args.length >= 2 && writeToNeo4j) {
       println("Storing accident graph")

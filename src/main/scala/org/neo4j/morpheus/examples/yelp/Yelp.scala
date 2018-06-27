@@ -43,7 +43,7 @@ class YelpData(jsonFile:String, attrs:Seq[String])(implicit spark:SparkSession, 
       .withImpliedLabel(label)
       .withPropertyKeys(attrs.map(_.replaceAll(".*\\.", "")):_*)
 
-    session.readFrom(CAPSNodeTable(mapping, df))
+    session.readFrom(CAPSNodeTable.fromMapping(mapping, df))
   }
 }
 

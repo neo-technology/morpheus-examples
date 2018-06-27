@@ -42,7 +42,7 @@ class CarMakeModel(csvDir:String)(implicit spark:SparkSession, session: CAPSSess
 
     val mapping = NodeMapping.withSourceIdKey(reservedId)
       .withImpliedLabel(label)
-      .withPropertyKeys((Seq("Trade_Name") ++ fields):_*)
+      // .withPropertyKeys((Seq("Trade_Name") ++ fields):_*)
 
     val g = session.readFrom(CAPSNodeTable.fromMapping(mapping, df)).asCaps
     g.cache()

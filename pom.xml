@@ -72,6 +72,12 @@
     </dependency>
 
     <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-mllib_${scala.binary.version}</artifactId>
+      <version>${dep.spark.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.neo4j.test</groupId>
       <artifactId>neo4j-harness</artifactId>
       <version>${dep.neo4j.harness.version}</version>
