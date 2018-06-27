@@ -6,11 +6,11 @@ package org.neo4j.morpheus.templates
 import java.io.File
 import java.net.URI
 
+import com.neo4j.morpheus.api.GraphSources
 import org.apache.hadoop.fs.FileSystem
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
-import org.neo4j.cypher.spark.EnterpriseNeo4jGraphSource
-import org.neo4j.morpheus.api.MorpheusGraphSource
+import org.neo4j.morpheus.templates.NorthwindMSDNTemplate.neo4jBoltURI
 import org.opencypher.okapi.api.graph.{Namespace, PropertyGraph, QualifiedGraphName}
 import org.opencypher.okapi.impl.io.SessionGraphDataSource
 import org.opencypher.spark.api.CAPSSession
@@ -60,10 +60,11 @@ object APIOverviewTemplate extends App {
     // register PropertyGraph data sources
     // can register multiple session data sources
     capsSession.registerSource(Namespace("working"), new SessionGraphDataSource())
+
     // mount data source at an arbitrary namespace
-    capsSession.registerSource(Namespace("datalake_europe"), MorpheusGraphSource.parquet(hdfsURItoWkds))
-    capsSession.registerSource(Namespace("sql"), MorpheusGraphSource.sql(rootDirectoryPath, sqlDDLFilename, sqlSourceMappingsFilename))
-    capsSession.registerSource(Namespace("neo4j"), new EnterpriseNeo4jGraphSource(Neo4jConfig(URI.create(boltURI))))
+    capsSession.registerSource(Namespace("datalake_europe"), GraphSources.fs(hdfsURItoWkds).parquet())
+    capsSession.registerSource(Namespace("sql"), GraphSources.sql(rootDirectoryPath, sqlDDLFilename).withDataSourcesFile(sqlSourceMappingsFilename))
+    capsSession.registerSource(Namespace("neo4j"), GraphSources.cypher.namedGraph(Neo4jConfig(URI.create(neo4jBoltURI))))
 
     // query across multiple graphs hosted in different environments
     // get a graph back containing the two input graphs, plus new relationships between nodes that seem to represent the same thing

@@ -5,12 +5,12 @@ import org.neo4j.morpheus.util.ExampleTest
 class NorthwindSQLExampleJDBCTest extends ExampleTest {
   it("runs Neo4jAndParquetExample") {
     validate(NorthwindSQLExampleJDBC.main(Array.empty), expectedOut =
-      """|+----------+
-         || count(n) |
-         |+----------+
-         || 3259     |
-         |+----------+
-         |(1 rows)
+      """|╔══════════╗
+         |║ count(n) ║
+         |╠══════════╣
+         |║ 3259     ║
+         |╚══════════╝
+         |(1 row)
          |Node labels {
          |	:Order
          |		ORDERID: INTEGER?
@@ -119,60 +119,60 @@ class NorthwindSQLExampleJDBCTest extends ExampleTest {
          |	:HAS_CUSTOMER_DEMOGRAPHIC
          |}
          |
-         |+---------------------------------------------------------+
-         || o.CUSTOMERID | o.ORDERDATE | e.TITLE                    |
-         |+---------------------------------------------------------+
-         || 'LAUGB'      | '1/1/1998'  | 'Sales Representative'     |
-         || 'LAUGB'      | '1/1/1998'  | 'Sales Representative'     |
-         || 'LAUGB'      | '1/1/1998'  | 'Sales Representative'     |
-         || 'LAUGB'      | '1/1/1998'  | 'Sales Manager'            |
-         || 'LAUGB'      | '1/1/1998'  | 'Inside Sales Coordinator' |
-         || 'OLDWO'      | '1/1/1998'  | 'Sales Representative'     |
-         || 'OLDWO'      | '1/1/1998'  | 'Sales Representative'     |
-         || 'OLDWO'      | '1/1/1998'  | 'Sales Representative'     |
-         || 'OLDWO'      | '1/1/1998'  | 'Sales Manager'            |
-         || 'OLDWO'      | '1/1/1998'  | 'Inside Sales Coordinator' |
-         || 'FAMIA'      | '1/14/1997' | 'Sales Representative'     |
-         || 'FAMIA'      | '1/14/1997' | 'Sales Representative'     |
-         || 'FAMIA'      | '1/14/1997' | 'Sales Representative'     |
-         || 'FAMIA'      | '1/14/1997' | 'Sales Manager'            |
-         || 'FAMIA'      | '1/14/1997' | 'Inside Sales Coordinator' |
-         || 'LAMAI'      | '1/14/1998' | 'Sales Representative'     |
-         || 'LAMAI'      | '1/14/1998' | 'Sales Representative'     |
-         || 'LAMAI'      | '1/14/1998' | 'Sales Representative'     |
-         || 'LAMAI'      | '1/14/1998' | 'Sales Manager'            |
-         || 'LAMAI'      | '1/14/1998' | 'Inside Sales Coordinator' |
-         || 'REGGC'      | '1/2/1998'  | 'Sales Representative'     |
-         || 'REGGC'      | '1/2/1998'  | 'Sales Representative'     |
-         || 'REGGC'      | '1/2/1998'  | 'Sales Representative'     |
-         || 'SUPRD'      | '1/20/1998' | 'Sales Representative'     |
-         || 'SUPRD'      | '1/20/1998' | 'Sales Representative'     |
-         || 'SUPRD'      | '1/20/1998' | 'Sales Representative'     |
-         || 'FRANS'      | '1/22/1997' | 'Sales Representative'     |
-         || 'FRANS'      | '1/22/1997' | 'Sales Representative'     |
-         || 'FRANS'      | '1/22/1997' | 'Sales Representative'     |
-         || 'FRANS'      | '1/22/1997' | 'Sales Manager'            |
-         || 'FRANS'      | '1/22/1997' | 'Inside Sales Coordinator' |
-         || 'SUPRD'      | '1/22/1998' | 'Sales Representative'     |
-         || 'SUPRD'      | '1/22/1998' | 'Sales Representative'     |
-         || 'SUPRD'      | '1/22/1998' | 'Sales Representative'     |
-         || 'SUPRD'      | '1/22/1998' | 'Sales Manager'            |
-         || 'SUPRD'      | '1/22/1998' | 'Inside Sales Coordinator' |
-         || 'RICAR'      | '1/26/1998' | 'Sales Representative'     |
-         || 'RICAR'      | '1/26/1998' | 'Sales Representative'     |
-         || 'RICAR'      | '1/26/1998' | 'Sales Representative'     |
-         || 'LACOR'      | '1/29/1998' | 'Sales Representative'     |
-         || 'LACOR'      | '1/29/1998' | 'Sales Representative'     |
-         || 'LACOR'      | '1/29/1998' | 'Sales Representative'     |
-         || 'LACOR'      | '1/29/1998' | 'Sales Manager'            |
-         || 'LACOR'      | '1/29/1998' | 'Inside Sales Coordinator' |
-         || 'MAGAA'      | '1/3/1997'  | 'Sales Representative'     |
-         || 'MAGAA'      | '1/3/1997'  | 'Sales Representative'     |
-         || 'MAGAA'      | '1/3/1997'  | 'Sales Representative'     |
-         || 'MAGAA'      | '1/3/1997'  | 'Sales Manager'            |
-         || 'MAGAA'      | '1/3/1997'  | 'Inside Sales Coordinator' |
-         || 'SAVEA'      | '1/5/1998'  | 'Sales Representative'     |
-         |+---------------------------------------------------------+
+         |╔══════════════╤═════════════╤════════════════════════════╗
+         |║ o.CUSTOMERID │ o.ORDERDATE │ e.TITLE                    ║
+         |╠══════════════╪═════════════╪════════════════════════════╣
+         |║ 'LAUGB'      │ '1/1/1998'  │ 'Sales Representative'     ║
+         |║ 'LAUGB'      │ '1/1/1998'  │ 'Sales Representative'     ║
+         |║ 'LAUGB'      │ '1/1/1998'  │ 'Sales Representative'     ║
+         |║ 'LAUGB'      │ '1/1/1998'  │ 'Sales Manager'            ║
+         |║ 'LAUGB'      │ '1/1/1998'  │ 'Inside Sales Coordinator' ║
+         |║ 'OLDWO'      │ '1/1/1998'  │ 'Sales Representative'     ║
+         |║ 'OLDWO'      │ '1/1/1998'  │ 'Sales Representative'     ║
+         |║ 'OLDWO'      │ '1/1/1998'  │ 'Sales Representative'     ║
+         |║ 'OLDWO'      │ '1/1/1998'  │ 'Sales Manager'            ║
+         |║ 'OLDWO'      │ '1/1/1998'  │ 'Inside Sales Coordinator' ║
+         |║ 'FAMIA'      │ '1/14/1997' │ 'Sales Representative'     ║
+         |║ 'FAMIA'      │ '1/14/1997' │ 'Sales Representative'     ║
+         |║ 'FAMIA'      │ '1/14/1997' │ 'Sales Representative'     ║
+         |║ 'FAMIA'      │ '1/14/1997' │ 'Sales Manager'            ║
+         |║ 'FAMIA'      │ '1/14/1997' │ 'Inside Sales Coordinator' ║
+         |║ 'LAMAI'      │ '1/14/1998' │ 'Sales Representative'     ║
+         |║ 'LAMAI'      │ '1/14/1998' │ 'Sales Representative'     ║
+         |║ 'LAMAI'      │ '1/14/1998' │ 'Sales Representative'     ║
+         |║ 'LAMAI'      │ '1/14/1998' │ 'Sales Manager'            ║
+         |║ 'LAMAI'      │ '1/14/1998' │ 'Inside Sales Coordinator' ║
+         |║ 'REGGC'      │ '1/2/1998'  │ 'Sales Representative'     ║
+         |║ 'REGGC'      │ '1/2/1998'  │ 'Sales Representative'     ║
+         |║ 'REGGC'      │ '1/2/1998'  │ 'Sales Representative'     ║
+         |║ 'SUPRD'      │ '1/20/1998' │ 'Sales Representative'     ║
+         |║ 'SUPRD'      │ '1/20/1998' │ 'Sales Representative'     ║
+         |║ 'SUPRD'      │ '1/20/1998' │ 'Sales Representative'     ║
+         |║ 'FRANS'      │ '1/22/1997' │ 'Sales Representative'     ║
+         |║ 'FRANS'      │ '1/22/1997' │ 'Sales Representative'     ║
+         |║ 'FRANS'      │ '1/22/1997' │ 'Sales Representative'     ║
+         |║ 'FRANS'      │ '1/22/1997' │ 'Sales Manager'            ║
+         |║ 'FRANS'      │ '1/22/1997' │ 'Inside Sales Coordinator' ║
+         |║ 'SUPRD'      │ '1/22/1998' │ 'Sales Representative'     ║
+         |║ 'SUPRD'      │ '1/22/1998' │ 'Sales Representative'     ║
+         |║ 'SUPRD'      │ '1/22/1998' │ 'Sales Representative'     ║
+         |║ 'SUPRD'      │ '1/22/1998' │ 'Sales Manager'            ║
+         |║ 'SUPRD'      │ '1/22/1998' │ 'Inside Sales Coordinator' ║
+         |║ 'RICAR'      │ '1/26/1998' │ 'Sales Representative'     ║
+         |║ 'RICAR'      │ '1/26/1998' │ 'Sales Representative'     ║
+         |║ 'RICAR'      │ '1/26/1998' │ 'Sales Representative'     ║
+         |║ 'LACOR'      │ '1/29/1998' │ 'Sales Representative'     ║
+         |║ 'LACOR'      │ '1/29/1998' │ 'Sales Representative'     ║
+         |║ 'LACOR'      │ '1/29/1998' │ 'Sales Representative'     ║
+         |║ 'LACOR'      │ '1/29/1998' │ 'Sales Manager'            ║
+         |║ 'LACOR'      │ '1/29/1998' │ 'Inside Sales Coordinator' ║
+         |║ 'MAGAA'      │ '1/3/1997'  │ 'Sales Representative'     ║
+         |║ 'MAGAA'      │ '1/3/1997'  │ 'Sales Representative'     ║
+         |║ 'MAGAA'      │ '1/3/1997'  │ 'Sales Representative'     ║
+         |║ 'MAGAA'      │ '1/3/1997'  │ 'Sales Manager'            ║
+         |║ 'MAGAA'      │ '1/3/1997'  │ 'Inside Sales Coordinator' ║
+         |║ 'SAVEA'      │ '1/5/1998'  │ 'Sales Representative'     ║
+         |╚══════════════╧═════════════╧════════════════════════════╝
          |(50 rows)
          |""".stripMargin)
   }
