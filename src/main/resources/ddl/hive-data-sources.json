@@ -2,7 +2,6 @@
   {
     "storageFormat": "hive",
     "dataSourceName": "CENSUS",
-    "schemaName": "CENSUS",
-    "isDefaultEnvironment": true
+    "schemaName": "CENSUS"
   }
 ]

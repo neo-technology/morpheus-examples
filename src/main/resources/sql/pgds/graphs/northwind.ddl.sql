@@ -1,4 +1,5 @@
-SET SCHEMA NORTHWIND;
+-- format for below is: <dataSourceName>.<schemaName>
+SET SCHEMA H2.NORTHWIND;
 
 -- Node labels
 

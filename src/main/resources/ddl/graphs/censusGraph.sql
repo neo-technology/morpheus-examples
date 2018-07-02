@@ -1,4 +1,5 @@
-SET SCHEMA CENSUS;
+-- format for below is: <dataSourceName>.<schemaName>
+SET SCHEMA CENSUS.CENSUS;
 
 -- =================================================================
 
