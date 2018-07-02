@@ -1,16 +1,5 @@
 SET SCHEMA CENSUS;
 
-DROP GRAPH Census_1901;
-
-DROP GRAPH SCHEMA Census;
-
-DROP LABEL LICENSED_BY;
-DROP LABEL PRESENT_IN;
-DROP LABEL Town;
-DROP LABEL Resident;
-DROP LABEL Person;
-DROP LABEL LicensedDog;
-
 -- =================================================================
 
 CREATE LABEL LicensedDog
