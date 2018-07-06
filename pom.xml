@@ -16,6 +16,11 @@
       <name>Morpheus private release repository</name>
       <url>https://neo.jfrog.io/neo/morpheus-release</url>
     </repository>
+    <repository>
+      <id>morpheus-snapshot</id>
+      <name>Morpheus internal repository (snapshots)</name>
+      <url>https://neo.jfrog.io/neo/opencypher</url>
+    </repository>
   </repositories>
 
   <properties>
