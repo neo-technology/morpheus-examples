@@ -1,3 +1,4 @@
+// tag::full-example[]
 package org.neo4j.morpheus.examples
 
 import com.neo4j.morpheus.api.GraphSources
@@ -25,3 +26,4 @@ object ParquetReadExample extends ConsoleApp {
   // Show the query results
   res.show
 }
+// end::full-example[]

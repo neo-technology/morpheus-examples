@@ -1,3 +1,4 @@
+// tag::full-example[]
 package org.neo4j.morpheus.examples
 
 import java.io.File
@@ -11,29 +12,35 @@ import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
 
 object HiveSqlGraphSourceExample extends ConsoleApp {
+
+  // tag::create-session[]
   // Create CAPS session
   val settings = hiveExampleSettings
   implicit val session: CAPSSession = CAPSSession.local(settings: _*)
+  // end::create-session[]
 
+  // tag::prepare-sql-database[]
   // Create the data in H2 in-memory database
   implicit val sparkSession: SparkSession = session.sparkSession
   val schema = "CENSUS"
   CensusDB.createHiveData(schema)
+  // end::prepare-sql-database[]
 
+  // tag::register-sql-source-in-session[]
   // Register a SQL source (for Hive) in the Cypher session
   val graphName = "Census_1901"
-
   val sqlGraphSource = GraphSources
-    .sql(
-      Paths.get(getClass.getResource("/ddl").toURI),
-      "censusGraph.sql"
-    ).withDataSourcesFile("hive-data-sources.json")
-
+      .sql(Paths.get(getClass.getResource("/ddl").toURI), "censusGraph.sql")
+      .withDataSourcesFile("hive-data-sources.json")
   session.registerSource(Namespace("sql"), sqlGraphSource)
+  // end::register-sql-source-in-session[]
 
+  // tag::access-registered-graph[]
   // Access the graph via its qualified graph name
   val census = session.catalog.graph("sql." + graphName)
+  // end::access-registered-graph[]
 
+  // tag::query-graph[]
   // Run a simple Cypher query
   census.cypher(
     s"""
@@ -44,6 +51,7 @@ object HiveSqlGraphSourceExample extends ConsoleApp {
     """.stripMargin)
     .getRecords
     .show
+  // end::query-graph[]
 
   // Set up temporary spark and hive directories for this example
   private def hiveExampleSettings: Seq[(String, String)] = {
@@ -69,3 +77,4 @@ object HiveSqlGraphSourceExample extends ConsoleApp {
   }
 
 }
+// end::full-example[]

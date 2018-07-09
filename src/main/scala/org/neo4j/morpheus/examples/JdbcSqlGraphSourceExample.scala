@@ -1,3 +1,4 @@
+// tag::full-example[]
 package org.neo4j.morpheus.examples
 
 import java.nio.file.Paths
@@ -45,3 +46,4 @@ object JdbcSqlGraphSourceExample extends ConsoleApp {
     .getRecords
     .show
 }
+// end::full-example[]

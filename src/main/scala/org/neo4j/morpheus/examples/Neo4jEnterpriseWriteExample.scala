@@ -1,3 +1,4 @@
+// tag::full-example[]
 package org.neo4j.morpheus.examples
 
 import com.neo4j.morpheus.api.GraphSources
@@ -56,3 +57,4 @@ object Neo4jEnterpriseWriteExample extends ConsoleApp {
         |CREATE (b)-[:FRIEND_OF { since: '12/12/2009' }]->(c)""".stripMargin
 
 }
+// end::full-example[]
