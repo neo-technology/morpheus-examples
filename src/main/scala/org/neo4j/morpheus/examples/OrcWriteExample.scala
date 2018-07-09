@@ -1,3 +1,4 @@
+// tag::full-example[]
 package org.neo4j.morpheus.examples
 
 import com.neo4j.morpheus.api.GraphSources
@@ -33,3 +34,4 @@ object OrcWriteExample extends ConsoleApp {
   // Store the graph using the Orc Graph Source (can be found in <project-dir>/target/classes/socialNetwork)
   session.catalog.store("myOrc.socialNetwork", graph)
 }
+// end::full-example[]

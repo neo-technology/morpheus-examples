@@ -1,3 +1,4 @@
+// tag::full-example[]
 package org.neo4j.morpheus.examples
 
 import java.nio.file.{Path, Paths}
@@ -49,3 +50,4 @@ object NorthwindSQLExampleJDBC extends ConsoleApp {
     """.stripMargin).show
 
 }
+// end::full-example[]
