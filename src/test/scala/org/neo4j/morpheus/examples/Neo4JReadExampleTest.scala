@@ -2,9 +2,9 @@ package org.neo4j.morpheus.examples
 
 import org.neo4j.morpheus.util.ExampleTest
 
-class Neo4jEnterpriseReadExampleTest extends ExampleTest {
+class Neo4JReadExampleTest extends ExampleTest {
   it("runs Neo4jAndParquetExample") {
-    validate(Neo4jEnterpriseReadExample.main(Array.empty), expectedOut =
+    validate(Neo4jReadExample.main(Array.empty), expectedOut =
       """|╔════════╤═════════════╤════════════╗
          |║ n.name │ type(r)     │ labels(m)  ║
          |╠════════╪═════════════╪════════════╣

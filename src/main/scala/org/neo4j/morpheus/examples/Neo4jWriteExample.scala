@@ -1,21 +1,21 @@
 package org.neo4j.morpheus.examples
 
 import com.neo4j.morpheus.api.GraphSources
-import org.neo4j.morpheus.utils.Neo4jHelpers._
-import org.neo4j.morpheus.utils.{ConsoleApp, Neo4jHelpers}
+import org.neo4j.morpheus.utils.ConsoleApp
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
+import org.opencypher.spark.testing.api.neo4j.Neo4jHarnessUtils._
 
-object Neo4jEnterpriseWriteExample extends ConsoleApp {
+object Neo4jWriteExample extends ConsoleApp {
 
   // Create CAPS session
   implicit val session: CAPSSession = CAPSSession.local()
 
   // Start a Neo4j instance and populate it with social network data
-  val neo4j = Neo4jHelpers.startNeo4j(personNetwork)
+  val neo4j = startNeo4j(personNetwork)
 
   // Register Graph Data Sources (GDS)
-  session.registerSource(Namespace("socialNetwork"), GraphSources.cypher.namedGraph(neo4j.dataSourceConfig))
+  session.registerSource(Namespace("socialNetwork"), GraphSources.cypher.neo4j(neo4j.dataSourceConfig))
 
   // Access the graph via its qualified graph name
   val socialNetwork = session.catalog.graph("socialNetwork.graph")

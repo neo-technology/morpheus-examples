@@ -42,6 +42,7 @@
     <dep.neo4j.harness.version>3.3.3</dep.neo4j.harness.version>
     <dep.scalatest.version>3.0.5</dep.scalatest.version>
     <dep.spark.version>2.2.1</dep.spark.version>
+    <dep.spark-cypher-testing.version>0.1.5</dep.spark-cypher-testing.version>
 
     <dep.h2.version>1.4.196</dep.h2.version>
 
@@ -86,6 +87,12 @@
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <version>${dep.h2.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.opencypher</groupId>
+      <artifactId>spark-cypher-testing</artifactId>
+      <version>${dep.spark-cypher-testing.version}</version>
     </dependency>
 
     <!--Test-->

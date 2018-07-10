@@ -64,7 +64,7 @@ object APIOverviewTemplate extends App {
     // mount data source at an arbitrary namespace
     capsSession.registerSource(Namespace("datalake_europe"), GraphSources.fs(hdfsURItoWkds).parquet())
     capsSession.registerSource(Namespace("sql"), GraphSources.sql(rootDirectoryPath, sqlDDLFilename).withDataSourcesFile(sqlSourceMappingsFilename))
-    capsSession.registerSource(Namespace("neo4j"), GraphSources.cypher.namedGraph(Neo4jConfig(URI.create(neo4jBoltURI))))
+    capsSession.registerSource(Namespace("neo4j"), GraphSources.cypher.neo4j(Neo4jConfig(URI.create(neo4jBoltURI))))
 
     // query across multiple graphs hosted in different environments
     // get a graph back containing the two input graphs, plus new relationships between nodes that seem to represent the same thing
@@ -96,7 +96,7 @@ object APIOverviewTemplate extends App {
     // register the dogOwner table as a Spark SQL view
     // this requires dropping out of public API and escaping into the underlying Spark API
     import org.opencypher.spark.impl.CAPSConverters._
-    dogOwners.asCaps.toDF().createOrReplaceTempView("dogOwners")
+    dogOwners.asCaps.df.createOrReplaceTempView("dogOwners")
 
     // query the registered table using SQL
     // get back a table of dogs owned by older people and their owners' name

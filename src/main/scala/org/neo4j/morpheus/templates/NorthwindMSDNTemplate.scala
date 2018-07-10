@@ -6,9 +6,7 @@ package org.neo4j.morpheus.templates
 import java.io.File
 import java.net.URI
 
-import com.neo4j.cypher.spark.Neo4jNamedGraphSource
 import com.neo4j.morpheus.api.GraphSources
-import com.neo4j.sql.SqlGraphSource
 import org.apache.hadoop.fs.FileSystem
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
@@ -48,7 +46,8 @@ object NorthwindMSDNTemplate extends App {
   // (:Employee { employeeId })-[:REPORTS_TO]->(:Employee)
   caps.registerSource(Namespace("northwind"), sqlGraphSource)
   // (:User { userId, [employeeId])-[:REPLY_TO]->(:Question { content })
-  caps.registerSource(Namespace("msdn"), GraphSources.cypher.namedGraph(Neo4jConfig(URI.create(neo4jBoltURI))))
+  caps.registerSource(Namespace("msdn"), GraphSources.cypher.neo4j(Neo4jConfig(URI.create
+  (neo4jBoltURI))))
   // (:Event { type, userId, timestamp })
   caps.registerSource(Namespace("msdn_logs"), GraphSources.fs(hdfsRootFolder).parquet())
 
