@@ -3,7 +3,7 @@ package org.neo4j.morpheus.examples
 import org.neo4j.morpheus.util.ExampleTest
 
 class NorthwindSQLExampleJDBCTest extends ExampleTest {
-  it("runs Neo4jAndParquetExample") {
+  it("runs NorthwindSQLExampleJDBC") {
     validate(NorthwindSQLExampleJDBC.main(Array.empty), expectedOut =
       """|╔══════════╗
          |║ count(n) ║

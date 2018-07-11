@@ -2,9 +2,9 @@ package org.neo4j.morpheus.examples
 
 import com.neo4j.morpheus.api.GraphSources
 import org.neo4j.morpheus.utils.ConsoleApp
+import org.neo4j.morpheus.utils.Neo4jHarnessUtils._
 import org.opencypher.okapi.api.graph.Namespace
 import org.opencypher.spark.api.CAPSSession
-import org.opencypher.spark.testing.api.neo4j.Neo4jHarnessUtils._
 
 object Neo4jReadExample extends ConsoleApp {
 
