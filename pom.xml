@@ -34,6 +34,7 @@
     <plugin.scala-maven.version>3.3.2</plugin.scala-maven.version>
     <plugin.surefire-maven.version>2.21.0</plugin.surefire-maven.version>
     <plugin.scalatest-maven.version>2.0.0</plugin.scalatest-maven.version>
+    <plugin.headers.version>3.0</plugin.headers.version>
 
     <scala.binary.version>2.11</scala.binary.version>
     <scala.version>2.11.12</scala.version>
@@ -175,6 +176,38 @@
         </executions>
       </plugin>
 
+      <!-- Copyright header plugin -->
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>${plugin.headers.version}</version>
+        <configuration>
+          <header>copyright-header.txt</header>
+          <basedir>${basedir}/src</basedir>
+          <mapping>
+            <scala>SLASHSTAR_STYLE</scala>
+            <java>SLASHSTAR_STYLE</java>
+          </mapping>
+          <excludes>
+            <exclude>test/resources/**</exclude>
+            <exclude>main/resources/**</exclude>
+            <exclude>**/*.g4</exclude>
+            <exclude>**/*.keep</exclude>
+            <exclude>**/*.tokens</exclude>
+            <exclude>**/*.csv</exclude>
+            <exclude>**/SQLgraph*.java</exclude>
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <id>check-license-headers</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
 
   </build>
