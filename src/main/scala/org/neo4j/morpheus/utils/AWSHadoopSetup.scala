@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2016-2018 "Neo4j Sweden, AB" [https://neo4j.com]
+ */
 package org.neo4j.morpheus.utils
 
 import org.apache.hadoop.conf.Configuration
