@@ -5,42 +5,41 @@ SET SCHEMA CENSUS.CENSUS;
 
 CREATE LABEL LicensedDog
   PROPERTIES (
-    licence_number CHAR(10)
+    licence_number STRING?
   )
   KEY
     LicensedDog_NK (LICENCE_NUMBER)
 
-CREATE LABEL Person PROPERTIES LIKE view_person
+CREATE LABEL Person PROPERTIES (first_name STRING?, last_name STRING?)
 
 CREATE LABEL Visitor
   PROPERTIES (
-    date_of_entry DATE,
+    date_of_entry STRING,
     sequence INTEGER,
-    nationality CHAR(3),
-    age INTEGER
+    nationality STRING?,
+    age INTEGER?
   )
   KEY
     Visitor_NK (date_of_entry, sequence)
 
 CREATE LABEL Resident
   PROPERTIES (
-    person_number CHAR(10)
+    person_number STRING
   )
   KEY
     Resident_NK (person_number)
 
 CREATE LABEL Town
-  PROPERTIES LIKE
-    town -- a base table
+  PROPERTIES (CITY_NAME STRING, REGION STRING)
   KEY
-    Town_NK IS Town_PK
+    Town_NK (REGION, CITY_NAME)
 
 CREATE LABEL PRESENT_IN
 	-- no properties
 
 CREATE LABEL LICENSED_BY
   PROPERTIES (
-    date_of_licence DATE
+    date_of_licence STRING
   )
 
 -- =================================================================
@@ -54,7 +53,7 @@ CREATE GRAPH SCHEMA Census
   (LicensedDog)
 
   --EDGES
-  PRESENT_IN,
+  [PRESENT_IN],
   [LICENSED_BY]
 
    --EDGE LABEL CONSTRAINTS
@@ -68,10 +67,10 @@ CREATE GRAPH Census_1901 WITH SCHEMA Census
 ---------
 -- NODES
 ---------
-	NODES LABELED
-	  (Person, Visitor)
-	FROM
-	  view_visitor
+    NODES LABELED
+      (Person, Visitor)
+    FROM
+      view_visitor
   MAPPING TARGET
     visitor_MT (nationality, passport_number)
 
