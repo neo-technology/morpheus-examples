@@ -6,96 +6,97 @@
 (1 row)
 Node labels {
 	:Order
-		ORDERID: INTEGER?
-		SHIPCITY: STRING?
-		SHIPPEDDATE: STRING?
-		ORDERDATE: STRING?
-		CUSTOMERID: STRING?
-		REQUIREDDATE: STRING?
-		SHIPNAME: STRING?
-		SHIPCOUNTRY: STRING?
-		FREIGHT: INTEGER?
-		SHIPPOSTALCODE: STRING?
-		SHIPVIA: INTEGER?
-		SHIPREGION: STRING?
-		SHIPADDRESS: STRING?
-		EMPLOYEEID: INTEGER?
+		customerID: STRING?
+		orderID: INTEGER
+		orderDate: STRING?
+		shipAddress: STRING?
+		shipRegion: STRING?
+		freight: INTEGER?
+		shipCity: STRING?
+		shipCountry: STRING?
+		shipName: STRING?
+		employeeID: INTEGER?
+		shippedDate: STRING?
+		requiredDate: STRING?
+		shipPostalCode: STRING?
+		shipVia: INTEGER?
 	:CustomerDemographic
-		CUSTOMERTYPEID: STRING?
-		CUSTOMERDESC: STRING?
+		customerTypeID: STRING
+		customerDesc: STRING?
 	:OrderDetails
-		PRODUCTID: INTEGER?
-		ORDERID: INTEGER?
-		UNITPRICE: INTEGER?
-		QUANTITY: INTEGER?
-		DISCOUNT: INTEGER?
+		quantity: INTEGER
+		orderID: INTEGER
+		productID: INTEGER
+		unitPrice: INTEGER
+		discount: INTEGER
 	:Product
-		PRODUCTID: INTEGER?
-		REORDERLEVEL: INTEGER?
-		UNITPRICE: INTEGER?
-		CATEGORYID: INTEGER?
-		PRODUCTNAME: STRING?
-		QUANTITYPERUNIT: STRING?
-		SUPPLIERID: INTEGER?
-		DISCONTINUED: INTEGER?
-		UNITSINSTOCK: INTEGER?
-		UNITSONORDER: INTEGER?
+		categoryID: INTEGER?
+		discontinued: INTEGER
+		unitsOnOrder: INTEGER?
+		quantityPerUnit: STRING?
+		reorderLevel: INTEGER?
+		supplierID: INTEGER?
+		productName: STRING
+		unitsInStock: INTEGER?
+		productID: INTEGER
+		unitPrice: INTEGER?
 	:Employee
-		ADDRESS: STRING?
-		REPORTSTO: INTEGER?
-		EXTENSION: STRING?
-		CITY: STRING?
-		PHOTOPATH: STRING?
-		HOMEPHONE: STRING?
-		TITLE: STRING?
-		REGION: STRING?
-		FIRSTNAME: STRING?
-		LASTNAME: STRING?
-		TITLEOFCOURTESY: STRING?
-		POSTALCODE: STRING?
-		EMPLOYEEID: INTEGER?
-		HIREDATE: STRING?
-		COUNTRY: STRING?
-		BIRTHDATE: STRING?
+		city: STRING?
+		hireDate: STRING?
+		photoPath: STRING?
+		country: STRING?
+		postalCode: STRING?
+		reportsTo: INTEGER?
+		lastName: STRING
+		firstName: STRING
+		birthDate: STRING?
+		homePhone: STRING?
+		employeeID: INTEGER
+		region: STRING?
+		address: STRING?
+		title: STRING?
+		titleOfCourtesy: STRING?
+		extension: STRING?
 	:Category
-		CATEGORYID: INTEGER?
-		CATEGORYNAME: STRING?
-		DESCRIPTION: STRING?
+		categoryID: INTEGER
+		categoryName: STRING
+		description: STRING?
 	:Supplier
-		CONTACTNAME: STRING?
-		ADDRESS: STRING?
-		CITY: STRING?
-		SUPPLIERID: INTEGER?
-		CONTACTTITLE: STRING?
-		REGION: STRING?
-		PHONE: STRING?
-		HOMEPAGE: STRING?
-		FAX: STRING?
-		POSTALCODE: STRING?
-		COMPANYNAME: STRING?
-		COUNTRY: STRING?
+		city: STRING?
+		homePage: STRING?
+		country: STRING?
+		postalCode: STRING?
+		contactName: STRING?
+		supplierID: INTEGER
+		fax: STRING?
+		companyName: STRING
+		region: STRING?
+		address: STRING?
+		contactTitle: STRING?
+		phone: STRING?
 	:Territory
-		TERRITORYID: STRING?
-		TERRITORYDESCRIPTION: STRING?
-		REGIONID: INTEGER?
+		territoryID: STRING
+		territoryDescription: STRING
+		regionID: INTEGER
 	:Shipper
-		SHIPPERID: INTEGER?
-		COMPANYNAME: STRING?
-		PHONE: STRING?
+		shipperID: INTEGER
+		companyName: STRING
+		phone: STRING?
 	:Customer
-		CONTACTNAME: STRING?
-		ADDRESS: STRING?
-		CUSTOMERID: STRING?
-		CITY: STRING?
-		CONTACTTITLE: STRING?
-		REGION: STRING?
-		PHONE: STRING?
-		FAX: STRING?
-		POSTALCODE: STRING?
-		COMPANYNAME: STRING?
-		COUNTRY: STRING?
+		customerID: STRING
+		city: STRING?
+		country: STRING?
+		postalCode: STRING?
+		contactName: STRING?
+		fax: STRING?
+		companyName: STRING
+		region: STRING?
+		address: STRING?
+		contactTitle: STRING?
+		phone: STRING?
 	:Region
-		REGIONID: INTEGER?
+		regionID: INTEGER
+		regionDescription: STRING
 }
 no label implications
 Rel types {
@@ -113,7 +114,7 @@ Rel types {
 }
 
 ╔══════════════╤═════════════╤════════════════════════════╗
-║ o.CUSTOMERID │ o.ORDERDATE │ e.TITLE                    ║
+║ o.customerID │ o.orderDate │ e.title                    ║
 ╠══════════════╪═════════════╪════════════════════════════╣
 ║ 'LAUGB'      │ '1/1/1998'  │ 'Sales Representative'     ║
 ║ 'LAUGB'      │ '1/1/1998'  │ 'Sales Representative'     ║
