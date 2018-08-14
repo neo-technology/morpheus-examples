@@ -96,6 +96,19 @@
       <version>${dep.h2.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-aws</artifactId>
+      <version>2.7.3</version>
+      <!-- Exclude due to conflicts with Spark -->
+      <exclusions>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
     <!--Test-->
     <dependency>
       <groupId>org.scalatest</groupId>
