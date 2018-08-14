@@ -83,7 +83,8 @@ SELECT convert(OrderID, bigint) AS OrderID,
 FROM Order_Details;
 
 CREATE VIEW view_Region AS
-SELECT convert(RegionID, bigint) AS RegionID
+SELECT convert(RegionID, bigint) AS RegionID,
+  RegionDescription
 FROM Region;
 
 CREATE VIEW view_Territories AS

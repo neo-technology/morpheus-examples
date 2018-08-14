@@ -3,17 +3,119 @@ SET SCHEMA H2.NORTHWIND;
 
 -- Node labels
 
-CREATE LABEL Employee PROPERTIES LIKE view_Employees
-CREATE LABEL Territory PROPERTIES LIKE view_Territories
-CREATE LABEL Supplier PROPERTIES LIKE view_Suppliers
-CREATE LABEL Customer PROPERTIES LIKE view_Customers
-CREATE LABEL Product PROPERTIES LIKE view_Products
-CREATE LABEL OrderDetails PROPERTIES LIKE view_Order_Details
-CREATE LABEL Category PROPERTIES LIKE view_Categories
-CREATE LABEL Region PROPERTIES LIKE view_Region
-CREATE LABEL Order PROPERTIES LIKE view_Orders
-CREATE LABEL Shipper PROPERTIES LIKE view_Shippers
-CREATE LABEL CustomerDemographic PROPERTIES LIKE view_CustomerDemographics
+CREATE LABEL Employee PROPERTIES (
+  employeeID INTEGER,
+  lastName STRING,
+  firstName STRING,
+  title STRING?,
+  titleOfCourtesy STRING?,
+  birthDate STRING?,
+  hireDate STRING?,
+  address STRING?,
+  city STRING?,
+  region STRING?,
+  postalCode STRING?,
+  country STRING?,
+  homePhone STRING?,
+  extension STRING?,
+  reportsTo INTEGER?,
+  photoPath STRING?
+)
+
+CREATE LABEL Territory PROPERTIES (
+  territoryID STRING,
+  territoryDescription STRING,
+  regionID INTEGER
+)
+
+CREATE LABEL Supplier PROPERTIES (
+  supplierID INTEGER,
+  companyName STRING,
+  contactName STRING?,
+  contactTitle STRING?,
+  address STRING?,
+  city STRING?,
+  region STRING?,
+  postalCode STRING?,
+  country STRING?,
+  phone STRING?,
+  fax STRING?,
+  homePage STRING?
+)
+
+CREATE LABEL Customer PROPERTIES (
+  customerID INTEGER,
+  companyName STRING,
+  contactName STRING?,
+  contactTitle STRING?,
+  address STRING?,
+  city STRING?,
+  region STRING?,
+  postalCode STRING?,
+  country STRING?,
+  phone STRING?,
+  fax STRING?
+)
+
+CREATE LABEL Product PROPERTIES (
+  productID INTEGER,
+  productName STRING,
+  supplierID INTEGER?,
+  categoryID INTEGER?,
+  quantityPerUnit STRING?,
+  unitPrice INTEGER?,
+  unitsInStock INTEGER?,
+  unitsOnOrder INTEGER?,
+  reorderLevel INTEGER?,
+  discontinued INTEGER
+)
+
+CREATE LABEL OrderDetails PROPERTIES (
+  orderID INTEGER,
+  productID INTEGER,
+  unitPrice INTEGER,
+  quantity INTEGER,
+  discount INTEGER
+)
+
+CREATE LABEL Category PROPERTIES (
+  categoryID INTEGER,
+  categoryName STRING,
+  description STRING?
+)
+
+CREATE LABEL Region PROPERTIES (
+  regionID INTEGER,
+  regionDescription STRING
+)
+
+CREATE LABEL Order PROPERTIES (
+  orderID INTEGER,
+  customerID INTEGER?,
+  employeeID INTEGER?,
+  orderDate STRING?,
+  requiredDate STRING?,
+  shippedDate STRING?,
+  shipVia INTEGER?,
+  freight INTEGER?,
+  shipName STRING?,
+  shipAddress STRING?,
+  shipCity STRING?,
+  shipRegion STRING?,
+  shipPostalCode STRING?,
+  shipCountry STRING?
+)
+
+CREATE LABEL Shipper PROPERTIES (
+  shipperID INTEGER,
+  companyName STRING,
+  phone STRING?
+)
+
+CREATE LABEL CustomerDemographic PROPERTIES (
+  customerTypeID STRING,
+  customerDesc STRING?
+)
 
 -- Relationship types
 
