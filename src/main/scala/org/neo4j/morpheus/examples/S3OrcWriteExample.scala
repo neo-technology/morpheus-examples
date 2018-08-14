@@ -44,6 +44,8 @@ object S3OrcWriteExample extends ConsoleApp {
   session.catalog.delete("myOrc.socialNetwork")
   // Store the graph using the Orc Graph Source (can be found in s3a://[bucketName]/morpheus-graphs/orc/socialNetwork)
   session.catalog.store("myOrc.socialNetwork", graph)
+
+  AWSHadoopSetup.tearDown
 }
 
 

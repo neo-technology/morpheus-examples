@@ -36,6 +36,8 @@ object S3OrcReadExample extends ConsoleApp {
 
   // Show the query results
   res.show
+
+  AWSHadoopSetup.tearDown
 }
 
 // end::full-example[]
