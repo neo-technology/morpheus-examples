@@ -1,7 +1,0 @@
-[
-  {
-    "storageFormat": "hive",
-    "dataSourceName": "CENSUS",
-    "schemaName": "CENSUS"
-  }
-]
